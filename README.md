@@ -1,2 +1,2 @@
 # FoxxoOS
-Terminal installer for NixOS
+Terminal installer for NixOS in Go Programming Language 
