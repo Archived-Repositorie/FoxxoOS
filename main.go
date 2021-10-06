@@ -9,11 +9,12 @@ import (
 )
 
 func main() {
-	cmd := exec.Command("bash", "-c", "firefox --new-window http://127.0.0.1:8080") //--kiosk for full screen installer
+	cmd := exec.Command("bash", "-c", "firefox --new-tab http://127.0.0.1:8080") //--kiosk for full screen installer
 
 	err := cmd.Run()
 
 	if err != nil {
+		fmt.Println("Install firefox!")
 		fmt.Println(err)
 	}
 
@@ -23,6 +24,7 @@ func main() {
 
 	app.Static("/style", "./style")
 
+	app.Post("/post/lang", server.Lang)
 	app.Get("/", server.Index)
 
 	err = app.Listen(":8080")
