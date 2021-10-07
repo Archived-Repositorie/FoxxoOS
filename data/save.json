@@ -1,4 +1,10 @@
 {
     "keyboard" : null,
-    "lang" : null
+    "lang" : null,
+    "timezone" : "Poland",
+    "user" : {
+        "password":null,
+        "name":null
+    },
+    "hostname":null
 }

@@ -1,6 +1,7 @@
 package server
 
 import (
+	"encoding/json"
 	"log"
 	"os"
 	"os/exec"
@@ -10,7 +11,21 @@ import (
 	"github.com/tidwall/sjson"
 ) //
 
-var files = [...]string{"data/languages.json", "data/keyboard.json", "data/save.json"}
+func stringInSlice(a string, list []string) bool {
+    for _, b := range list {
+        if b == a {
+            return true
+        }
+    }
+    return false
+}
+
+var files = [...]string{
+	"data/languages.json", 
+	"data/keyboard.json", 
+	"data/save.json",
+	"data/timezones.json",
+}
 
 func errorCheck(er error) {
 	if er != nil {
@@ -80,7 +95,34 @@ func Keyboard(c *fiber.Ctx) error {
 	return c.SendString(value.String())
 }
 
+type Time struct {
+	Timezone []string
+}
+
+func Timezone(c *fiber.Ctx) error {
+	timeRead, err := os.ReadFile(files[3])
+
+	errorCheck(err)
+
+	var times Time
+
+	err = json.Unmarshal(timeRead, &times)
+
+	errorCheck(err)
+
+	time := c.Query("time")
+
+	if !stringInSlice(time, times.Timezone) {
+		return c.SendString("no ok")
+	}
+
+	SaveMain("timezone", time)
+
+	return c.SendString(time)
+}
+
 func MainServer(app *fiber.App) {
+	app.Post("/post/timezone", Timezone)
 	app.Post("/post/lang", Lang)
 	app.Post("/post/keyboard", Keyboard)
 	app.Post("/post/save", Save)
