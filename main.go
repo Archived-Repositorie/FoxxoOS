@@ -1,7 +1,7 @@
 package main
 
 import (
-	"FoxxoOS/server"
+	server "FoxxoOS/mainServer"
 	"fmt"
 	"os/exec"
 
