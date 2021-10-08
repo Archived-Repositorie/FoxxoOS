@@ -2,16 +2,31 @@ package routes
 
 import (
 	"encoding/json"
+	"fmt"
 	"os"
 
-	
-	"FoxxoOS/util"
 	"FoxxoOS/files"
-
+	"FoxxoOS/util"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/tidwall/gjson"
 )
+
+func User(c *fiber.Ctx) error {
+	user := [3]string{
+		c.Query("name"),
+		c.Query("password"),
+		c.Query("hostname"),
+	}
+
+	userJSON := fmt.Sprintf("[%v,%v,%v]", user[0], user[1], user[2])
+
+	util.SaveMain("user.name", user[0])
+	util.SaveMain("user.password", user[1])
+	util.SaveMain("hostname", user[2])
+
+	return c.SendString(userJSON)
+}
 
 func Save(c *fiber.Ctx) error {
 	saveRead, err := os.ReadFile(files.Files[2])
