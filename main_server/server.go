@@ -1,4 +1,4 @@
-package mainServer
+package main_server
 
 import (
 	r "FoxxoOS/routes"
