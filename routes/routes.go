@@ -97,3 +97,18 @@ func Timezone(c *fiber.Ctx) error {
 
 	return c.SendString(time)
 }
+
+func DE(c *fiber.Ctx) error {
+	keyRead, err := os.ReadFile(files.Files[4])
+
+	util.ErrorCheck(err)
+
+	keyJSON := string(keyRead)
+	key := c.Query("desktop")
+
+	value := gjson.Get(keyJSON, key)
+
+	util.SaveMain("desktop", value.String())
+
+	return c.SendString(value.String())
+}
