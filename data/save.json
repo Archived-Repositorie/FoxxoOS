@@ -6,5 +6,6 @@
         "password":null,
         "name":null
     },
-    "hostname":null
+    "hostname":null,
+    "desktop":"default"
 }
