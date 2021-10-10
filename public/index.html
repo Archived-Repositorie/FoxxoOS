@@ -10,8 +10,11 @@
     <script src="Parameter.js"></script>
     <script>
     window.onload = function() {
-        var uwu = getSearchParameters();
-        console.log(uwu);
+        var GetParameters = getSearchParameters();
+        if(GetParameters.lang != undefined) {
+            document.getElementById("LangLay").innerHTML = GetParameters.lang;
+        }
+        
     };
     </script>
     <link rel="stylesheet" href="../style/main.css">
@@ -19,10 +22,10 @@
 <body>
     <h1 style="text-align: center;font-family:Arial, Helvetica, sans-serif;">Welcome to the Foxxo OS installer</h1>
     <a href="lang">
-    <div class="button_slide slide_left" style="width:10% ;position: absolute;left: 50%;top: 60%;-webkit-transform: translate(-50%, -50%);transform: translate(-50%, -50%);">Language & keyboard</div>#change this depending on the value of the get parameter
+    <div id="LangLay" class="button_slide slide_left" style="width:10% ;position: absolute;left: 50%;top: 60%;-webkit-transform: translate(-50%, -50%);transform: translate(-50%, -50%);">Language & keyboard</div>
     </a>
     <a href="installstart">
-    <div class="button_slide slide_left" style="width:10% ;position: absolute;left: 50%;top:40%;-webkit-transform: translate(-50%, -50%);transform: translate(-50%, -50%);">Start installation</div>
+    <div id="startins"class="button_slide slide_left" style="width:10% ;position: absolute;left: 50%;top:40%;-webkit-transform: translate(-50%, -50%);transform: translate(-50%, -50%);">Start installation</div>
   </a> 
 </body>
 </html>
