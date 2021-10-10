@@ -149,18 +149,18 @@ func Office(c *fiber.Ctx) error {
 	util.ErrorCheck(err)
 
 	officeJSON := string(officeRead)
-	office := [...]string{
-		c.Query("onlyoffice"),
-		c.Query("libreoffice"),
-		c.Query("freeoffice"),
-		c.Query("gnumeric"),
-		c.Query("calligra"),
-		c.Query("goffice"),
-		c.Query("wpsoffice"),
+
+	var officeMap map[string]string
+	json.Unmarshal(officeRead, &officeMap)
+
+	office := []string{}
+	for key,_ := range officeMap {
+		office = append(office, c.Query(key))
 	}
 
+	fmt.Println(office)
+
 	officeList := []string{}
-	
 	for i := 0; i < len(office); i++ {
 		if office[i] != "" {
 			officeList = append(officeList,gjson.Get(officeJSON, office[i]).String())
