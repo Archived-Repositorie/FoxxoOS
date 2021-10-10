@@ -6,4 +6,5 @@ var Files = [...]string{
 	"data/save.json",
 	"data/timezones.json",
 	"data/desktops.json",
+	"data/webbrowsers.json",
 }

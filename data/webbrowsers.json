@@ -1,0 +1,11 @@
+{
+    "opera" : "opera",
+    "chromium" : "chromium",
+    "chrome" : "google-chrome",
+    "vivaldi" : "vivaldi",
+    "firefox" : "firefox-esr",
+    "eolie" : "eolie",
+    "tor" : "tor",
+    "brave" : "brave",
+    "qutebrowser" : "qutebrowser"
+}

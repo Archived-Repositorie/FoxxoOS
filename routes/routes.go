@@ -19,7 +19,7 @@ func User(c *fiber.Ctx) error {
 		c.Query("hostname"),
 	}
 
-	userJSON := fmt.Sprintf("[%v,%v,%v]", user[0], user[1], user[2])
+	userJSON := fmt.Sprintf("%v", user)
 
 	util.SaveMain("user.name", user[0])
 	util.SaveMain("user.password", user[1])
@@ -99,16 +99,31 @@ func Timezone(c *fiber.Ctx) error {
 }
 
 func DE(c *fiber.Ctx) error {
-	keyRead, err := os.ReadFile(files.Files[4])
+	DERead, err := os.ReadFile(files.Files[4])
 
 	util.ErrorCheck(err)
 
-	keyJSON := string(keyRead)
-	key := c.Query("desktop")
+	DEJSON := string(DERead)
+	DE := c.Query("desktop")
 
-	value := gjson.Get(keyJSON, key)
+	value := gjson.Get(DEJSON, DE)
 
 	util.SaveMain("desktop", value.String())
+
+	return c.SendString(value.String())
+}
+
+func Web(c *fiber.Ctx) error {
+	webRead, err := os.ReadFile(files.Files[5])
+
+	util.ErrorCheck(err)
+
+	webJSON := string(webRead)
+	web := c.Query("web")
+
+	value := gjson.Get(webJSON, web)
+
+	util.SaveMain("webbrowser", value.String())
 
 	return c.SendString(value.String())
 }

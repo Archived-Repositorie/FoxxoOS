@@ -1,11 +1,12 @@
 {
-    "keyboard" : "us",
-    "lang" : "en_US.UTF-8",
-    "timezone" : "Europe/London",
+    "keyboard":"us",
+    "lang":"en_US.UTF-8",
+    "timezone":"Europe/London",
     "user" : {
         "password":null,
         "name":null
     },
     "hostname":null,
-    "desktop":"default"
+    "desktop":"default",
+    "webbrowser":"firefox-esr"
 }

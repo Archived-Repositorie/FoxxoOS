@@ -9,6 +9,7 @@ import (
 
 
 func MainServer(app *fiber.App) {
+	app.Post("/post/web", r.Web)
 	app.Post("/post/de", r.DE)
 	app.Post("/post/user", r.User)
 	app.Post("/post/timezone", r.Timezone)
