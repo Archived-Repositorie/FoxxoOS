@@ -9,5 +9,6 @@
     "hostname":null,
     "desktop":"default",
     "webbrowser":"firefox-esr",
-    "programming":null
+    "programming":null,
+    "office":null
 }

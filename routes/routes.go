@@ -142,3 +142,18 @@ func Program(c *fiber.Ctx) error {
 
 	return c.SendString(value.String())
 }
+
+func Office(c *fiber.Ctx) error {
+	officeRead, err := os.ReadFile(files.Files[7])
+
+	util.ErrorCheck(err)
+
+	officeJSON := string(officeRead)
+	office := c.Query("office")
+
+	value := gjson.Get(officeJSON, office)
+
+	util.SaveMain("office", value.String())
+
+	return c.SendString(value.String())
+}

@@ -1,0 +1,9 @@
+{
+    "onlyoffice" : "onlyoffice-bin",
+    "libreoffice" : "libreoffice-fresh",
+    "freeoffice" : "freeoffice",
+    "gnumeric" : "gnumeric",
+    "calligra" : "calligra",
+    "goffice" : "goffice",
+    "wpsoffice" : "wpsoffice"
+}

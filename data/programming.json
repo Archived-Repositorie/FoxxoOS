@@ -1,4 +1,5 @@
 {
+    "nano" : "nano",
     "emacs" : "emacs",
     "vim" : "vim",
     "sublime" : "sublime3",
