@@ -11,7 +11,7 @@
     <script>
     window.onload = function() {
         var GetParameters = getSearchParameters();
-        if(GetParameters.lang != undefined) {
+        if(GetParameters.lang != undefined || GetParameters.lang.isEmpty != true) {
             document.getElementById("LangLay").innerHTML = GetParameters.lang;
         }
         
