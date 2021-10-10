@@ -127,3 +127,18 @@ func Web(c *fiber.Ctx) error {
 
 	return c.SendString(value.String())
 }
+
+func Program(c *fiber.Ctx) error {
+	webRead, err := os.ReadFile(files.Files[6])
+
+	util.ErrorCheck(err)
+
+	webJSON := string(webRead)
+	web := c.Query("program")
+
+	value := gjson.Get(webJSON, web)
+
+	util.SaveMain("programming", value.String())
+
+	return c.SendString(value.String())
+}

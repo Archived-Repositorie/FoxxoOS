@@ -1,0 +1,18 @@
+{
+    "emacs" : "emacs",
+    "vim" : "vim",
+    "sublime" : "sublime3",
+    "vscodium" : "vscodium",
+    "vscode" : "vscode",
+    "rider" : "jetbrains.rider",
+    "clion" : "jetbrains.clion",
+    "goland" : "jetbrains.goland",
+    "webstorm" : "jetbrains.webstorm",
+    "phpstorm" : "jetbrains.phpstorm",
+    "datagrip" : "jetbrains.datagrip",
+    "rubymine" : "jetbrains.ruby-mine",
+    "intellij-ultimate" : "jetbrains.idea-ultimate",
+    "intellij-community" : "jetbrains.idea-community",
+    "pycharm-community" : "jetbrains.pycharm-community",
+    "pycharm-professional" : "jetbrains.pycharm-professional"
+}

@@ -8,5 +8,6 @@
     },
     "hostname":null,
     "desktop":"default",
-    "webbrowser":"firefox-esr"
+    "webbrowser":"firefox-esr",
+    "programming":null
 }
