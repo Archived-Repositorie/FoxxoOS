@@ -29,17 +29,32 @@ func ErrorCheck(er error) {
 	}
 }
 
-func SaveMain(key string, value string) {
-	saveMainRead, err := os.ReadFile(files.Files[2])
+func SetMultiSave(key string, value []string) {
+	SetMultiSave, err := os.ReadFile(files.Files[2])
 
 	ErrorCheck(err)
 
-	saveMainJSON := string(saveMainRead)
-	saveMainJSON,err = sjson.Set(saveMainJSON, key, value)
+	SetMultiSaveJSON := string(SetMultiSave)
+	SetMultiSaveJSON, err = sjson.Set(SetMultiSaveJSON, key, value)
 
 	ErrorCheck(err)
 
-	err = os.WriteFile(files.Files[2], []byte(saveMainJSON), 0777)
+	err = os.WriteFile(files.Files[2], []byte(SetMultiSaveJSON), 0777)
+
+	ErrorCheck(err)
+}
+
+func SetOnceSave(key string, value string) {
+	SetOnceSave, err := os.ReadFile(files.Files[2])
+
+	ErrorCheck(err)
+
+	SetSaveJSON := string(SetOnceSave)
+	SetSaveJSON,err = sjson.Set(SetSaveJSON, key, value)
+
+	ErrorCheck(err)
+
+	err = os.WriteFile(files.Files[2], []byte(SetSaveJSON), 0777)
 
 	ErrorCheck(err)
 }

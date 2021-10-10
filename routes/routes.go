@@ -21,9 +21,9 @@ func User(c *fiber.Ctx) error {
 
 	userJSON := fmt.Sprintf("%v", user)
 
-	util.SaveMain("user.name", user[0])
-	util.SaveMain("user.password", user[1])
-	util.SaveMain("hostname", user[2])
+	util.SetOnceSave("user.name", user[0])
+	util.SetOnceSave("user.password", user[1])
+	util.SetOnceSave("hostname", user[2])
 
 	return c.SendString(userJSON)
 }
@@ -52,7 +52,7 @@ func Lang(c *fiber.Ctx) error {
 
 	value := gjson.Get(langJSON, lang)
 
-	util.SaveMain("lang", value.String())
+	util.SetOnceSave("lang", value.String())
 
 	return c.SendString(value.String())
 }
@@ -67,7 +67,7 @@ func Keyboard(c *fiber.Ctx) error {
 
 	value := gjson.Get(keyJSON, key)
 
-	util.SaveMain("keyboard", value.String())
+	util.SetOnceSave("keyboard", value.String())
 
 	return c.SendString(value.String())
 }
@@ -93,7 +93,7 @@ func Timezone(c *fiber.Ctx) error {
 		return c.SendString("no ok")
 	}
 
-	util.SaveMain("timezone", time)
+	util.SetOnceSave("timezone", time)
 
 	return c.SendString(time)
 }
@@ -108,7 +108,7 @@ func DE(c *fiber.Ctx) error {
 
 	value := gjson.Get(DEJSON, DE)
 
-	util.SaveMain("desktop", value.String())
+	util.SetOnceSave("desktop", value.String())
 
 	return c.SendString(value.String())
 }
@@ -123,7 +123,7 @@ func Web(c *fiber.Ctx) error {
 
 	value := gjson.Get(webJSON, web)
 
-	util.SaveMain("webbrowser", value.String())
+	util.SetOnceSave("webbrowser", value.String())
 
 	return c.SendString(value.String())
 }
@@ -138,7 +138,7 @@ func Program(c *fiber.Ctx) error {
 
 	value := gjson.Get(webJSON, web)
 
-	util.SaveMain("programming", value.String())
+	util.SetOnceSave("programming", value.String())
 
 	return c.SendString(value.String())
 }
@@ -149,11 +149,25 @@ func Office(c *fiber.Ctx) error {
 	util.ErrorCheck(err)
 
 	officeJSON := string(officeRead)
-	office := c.Query("office")
+	office := [...]string{
+		c.Query("onlyoffice"),
+		c.Query("libreoffice"),
+		c.Query("freeoffice"),
+		c.Query("gnumeric"),
+		c.Query("calligra"),
+		c.Query("goffice"),
+		c.Query("wpsoffice"),
+	}
 
-	value := gjson.Get(officeJSON, office)
+	officeList := []string{}
+	
+	for i := 0; i < len(office); i++ {
+		if office[i] != "" {
+			officeList = append(officeList,gjson.Get(officeJSON, office[i]).String())
+		}
+	}
 
-	util.SaveMain("office", value.String())
-
-	return c.SendString(value.String())
+	util.SetMultiSave("office", officeList)
+	
+	return c.SendString(fmt.Sprintf("%v", officeList))
 }
