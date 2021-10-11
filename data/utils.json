@@ -1,0 +1,21 @@
+{
+    "neofetch" : "neofetch",
+    "screenfetch" : "screenfetch",
+    "htop" : "htop",
+    "cpufetch" : "cpufetch",
+    "gparted" : "gparted",
+    "bpytop" : "bpytop",
+    "albert" : "albert",
+    "baobab" : "baobab",
+    "bleachbit" : "bleachbit",
+    "glances" : "glances",
+    "googleearth" : "googleearth",
+    "grsync" : "grsync",
+    "open-vm-tools" : "open-vm-tools",
+    "powertop" : "powertop",
+    "putty" : "putty",
+    "synapse" : "synapse",
+    "sysprof" : "sysprof",
+    "vnstat" : "vnstat",
+    "wireshark" : "wireshark"
+}

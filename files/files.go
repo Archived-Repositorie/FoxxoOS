@@ -10,4 +10,5 @@ var Files = [...]string{
 	"data/programming.json",
 	"data/office.json",
 	"data/gaming.json",
+	"data/utils.json",
 }
