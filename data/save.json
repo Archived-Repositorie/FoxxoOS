@@ -10,5 +10,6 @@
     "desktop":"default",
     "webbrowser":["firefox-esr"],
     "programming":null,
-    "office":null
+    "office":null,
+    "gaming":null
 }

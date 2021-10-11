@@ -1,4 +1,5 @@
 {
+    "unity" : "unity3d",
     "nano" : "nano",
     "emacs" : "emacs",
     "vim" : "vim",

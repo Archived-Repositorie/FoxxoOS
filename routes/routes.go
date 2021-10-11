@@ -193,3 +193,30 @@ func Office(c *fiber.Ctx) error {
 	
 	return c.SendString(fmt.Sprintf("%v", list))
 }
+
+func Gaming(c *fiber.Ctx) error {
+	read, err := os.ReadFile(files.Files[8])
+
+	util.ErrorCheck(err)
+
+	JSON := string(read)
+
+	var lMap map[string]string
+	json.Unmarshal(read, &lMap)
+
+	array := []string{}
+	for key,_ := range lMap {
+		array = append(array, c.Query(key))
+	}
+
+	list := []string{}
+	for i := 0; i < len(array); i++ {
+		if array[i] != "" {
+			list = append(list,gjson.Get(JSON, array[i]).String())
+		}
+	}
+
+	util.SetMultiSave("gaming", list)
+	
+	return c.SendString(fmt.Sprintf("%v", list))
+}
