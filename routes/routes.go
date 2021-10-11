@@ -114,7 +114,7 @@ func DE(c *fiber.Ctx) error {
 }
 
 func Web(c *fiber.Ctx) error {
-	read, err := os.ReadFile(files.Files[6])
+	read, err := os.ReadFile(files.Files[5])
 
 	util.ErrorCheck(err)
 
