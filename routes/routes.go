@@ -114,60 +114,109 @@ func DE(c *fiber.Ctx) error {
 }
 
 func Web(c *fiber.Ctx) error {
-	webRead, err := os.ReadFile(files.Files[5])
+	read, err := os.ReadFile(files.Files[5])
 
 	util.ErrorCheck(err)
 
-	webJSON := string(webRead)
-	web := c.Query("web")
+	JSON := string(read)
 
-	value := gjson.Get(webJSON, web)
+	var lMap map[string]string
+	json.Unmarshal(read, &lMap)
 
-	util.SetOnceSave("webbrowser", value.String())
-
-	return c.SendString(value.String())
-}
-
-func Program(c *fiber.Ctx) error {
-	webRead, err := os.ReadFile(files.Files[6])
-
-	util.ErrorCheck(err)
-
-	webJSON := string(webRead)
-	web := c.Query("program")
-
-	value := gjson.Get(webJSON, web)
-
-	util.SetOnceSave("programming", value.String())
-
-	return c.SendString(value.String())
-}
-
-func Office(c *fiber.Ctx) error {
-	officeRead, err := os.ReadFile(files.Files[7])
-
-	util.ErrorCheck(err)
-
-	officeJSON := string(officeRead)
-
-	var officeMap map[string]string
-	json.Unmarshal(officeRead, &officeMap)
-
-	office := []string{}
-	for key,_ := range officeMap {
-		office = append(office, c.Query(key))
+	array := []string{}
+	for key,_ := range lMap {
+		array = append(array, c.Query(key))
 	}
 
-	fmt.Println(office)
-
-	officeList := []string{}
-	for i := 0; i < len(office); i++ {
-		if office[i] != "" {
-			officeList = append(officeList,gjson.Get(officeJSON, office[i]).String())
+	list := []string{}
+	for i := 0; i < len(array); i++ {
+		if array[i] != "" {
+			list = append(list,gjson.Get(JSON, array[i]).String())
 		}
 	}
 
-	util.SetMultiSave("office", officeList)
+	util.SetMultiSave("webbrowser", list)
 	
-	return c.SendString(fmt.Sprintf("%v", officeList))
+	return c.SendString(fmt.Sprintf("%v", list))
+}
+
+func Program(c *fiber.Ctx) error {
+	read, err := os.ReadFile(files.Files[6])
+
+	util.ErrorCheck(err)
+
+	JSON := string(read)
+
+	var lMap map[string]string
+	json.Unmarshal(read, &lMap)
+
+	array := []string{}
+	for key,_ := range lMap {
+		array = append(array, c.Query(key))
+	}
+
+	list := []string{}
+	for i := 0; i < len(array); i++ {
+		if array[i] != "" {
+			list = append(list,gjson.Get(JSON, array[i]).String())
+		}
+	}
+
+	util.SetMultiSave("programming", list)
+	
+	return c.SendString(fmt.Sprintf("%v", list))
+}
+
+func Office(c *fiber.Ctx) error {
+	read, err := os.ReadFile(files.Files[7])
+
+	util.ErrorCheck(err)
+
+	JSON := string(read)
+
+	var lMap map[string]string
+	json.Unmarshal(read, &lMap)
+
+	array := []string{}
+	for key,_ := range lMap {
+		array = append(array, c.Query(key))
+	}
+
+	list := []string{}
+	for i := 0; i < len(array); i++ {
+		if array[i] != "" {
+			list = append(list,gjson.Get(JSON, array[i]).String())
+		}
+	}
+
+	util.SetMultiSave("office", list)
+	
+	return c.SendString(fmt.Sprintf("%v", list))
+}
+
+func Gaming(c *fiber.Ctx) error {
+	read, err := os.ReadFile(files.Files[8])
+
+	util.ErrorCheck(err)
+
+	JSON := string(read)
+
+	var lMap map[string]string
+	json.Unmarshal(read, &lMap)
+
+	array := []string{}
+	for key,_ := range lMap {
+		array = append(array, c.Query(key))
+	}
+
+	list := []string{}
+	for i := 0; i < len(array); i++ {
+		if array[i] != "" {
+			list = append(list,gjson.Get(JSON, array[i]).String())
+		}
+	}
+
+	util.SetMultiSave("gaming", list)
+	
+	return c.SendString(fmt.Sprintf("%v", list))
 }

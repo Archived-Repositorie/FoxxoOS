@@ -1,0 +1,10 @@
+{
+    "lutris" : "lutris",
+    "wine" : "wine",
+    "winetricks" : "winetricks",
+    "steam" : "steam",
+    "minecraft" : "minecraft",
+    "multimc" : "multimc",
+    "playonlinux" : "playonlinux",
+    "snake" : "haskellPackages.snake-game"
+}

@@ -8,7 +8,8 @@
     },
     "hostname":null,
     "desktop":"default",
-    "webbrowser":"firefox-esr",
+    "webbrowser":["firefox-esr"],
     "programming":null,
-    "office":["libreoffice-fresh"]
+    "office":null,
+    "gaming":null
 }
