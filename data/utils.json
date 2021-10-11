@@ -17,5 +17,6 @@
     "synapse" : "synapse",
     "sysprof" : "sysprof",
     "vnstat" : "vnstat",
-    "wireshark" : "wireshark"
+    "wireshark" : "wireshark",
+    "nmap" : "nmap"
 }
