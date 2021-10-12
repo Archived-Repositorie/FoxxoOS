@@ -11,5 +11,7 @@
     "webbrowser":["firefox-esr"],
     "programming":null,
     "office":null,
-    "gaming":null
+    "gaming":null,
+    "utils":null,
+    "mediagrap":null
 }
