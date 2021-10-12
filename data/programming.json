@@ -16,6 +16,5 @@
     "intellij-ultimate" : "jetbrains.idea-ultimate",
     "intellij-community" : "jetbrains.idea-community",
     "pycharm-community" : "jetbrains.pycharm-community",
-    "pycharm-professional" : "jetbrains.pycharm-professional",
-    "code-server" : "code-server"
+    "pycharm-professional" : "jetbrains.pycharm-professional"
 }

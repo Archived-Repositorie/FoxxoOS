@@ -1,7 +1,7 @@
 package main
 
 import (
-	s "FoxxoOS/main_server"
+	server "FoxxoOS/main_server"
 	"fmt"
 	"os/exec"
 
@@ -9,11 +9,7 @@ import (
 )
 
 func main() {
-	cmd := exec.Command(
-		"bash", 
-		"-c", 
-		"firefox --new-tab http://127.0.0.1:8080",
-	) //--kiosk for full screen installer
+	cmd := exec.Command("bash", "-c", "firefox --new-tab http://127.0.0.1:8080") //--kiosk for full screen installer
 	err := cmd.Run()
 
 	if err != nil {
@@ -25,5 +21,5 @@ func main() {
 		AppName: "Foxxo OS",
 	})
 
-	s.MainServer(app)
+	server.MainServer(app)
 }
