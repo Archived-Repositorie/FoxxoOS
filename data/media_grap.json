@@ -1,0 +1,23 @@
+{
+    "obs-studio" : "obs-studio",
+    "krita" : "krita",
+    "kdenlive" : "libsForQt5.kdenlive",
+    "blender" : "blender",
+    "darktable" : "darktable",
+    "gimp" : "gimp",
+    "digikam" : "digikam",
+    "inkscape" : "inkscape",
+    "kodi" : "kodi",
+    "openshot" : "openshot-qt",
+    "lollypop" : "lollypop",
+    "mpc" : "mpc_cli",
+    "mpv" : "mpv",
+    "mpd" : "mpd",
+    "audacity" : "audacity",
+    "lmms" : "lmms",
+    "handbrake" : "handbrake",
+    "deadbeef" : "deadbeef",
+    "ardour" : "ardour",
+    "clementine" : "clementine",
+    "spotify" : "spotify-cli-linux"
+}
