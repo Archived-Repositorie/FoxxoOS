@@ -9,6 +9,7 @@ import (
 
 
 func MainServer(app *fiber.App) {
+	app.Post("/post/mediagrap", r.MediaGrap)
 	app.Post("/post/utils", r.Utils)
 	app.Post("/post/gaming", r.Gaming)
 	app.Post("/post/office", r.Office)
