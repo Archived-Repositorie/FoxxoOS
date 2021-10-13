@@ -1,24 +1,22 @@
 package util
 
 import (
+	"FoxxoOS/files"
 	"log"
 	"os"
 	"os/exec"
-	"FoxxoOS/files"
 
 	"github.com/tidwall/sjson"
 )
 
-
 func StringInSlice(a string, list []string) bool {
-    for _, b := range list {
-        if b == a {
-            return true
-        }
-    }
-    return false
+	for _, b := range list {
+		if b == a {
+			return true
+		}
+	}
+	return false
 }
-
 
 func ErrorCheck(er error) {
 	if er != nil {
@@ -30,7 +28,7 @@ func ErrorCheck(er error) {
 }
 
 func SetMultiSave(key string, value []string) {
-	SetMultiSave, err := os.ReadFile(files.Files[2])
+	SetMultiSave, err := os.ReadFile(files.FilesJSON[2])
 
 	ErrorCheck(err)
 
@@ -39,22 +37,22 @@ func SetMultiSave(key string, value []string) {
 
 	ErrorCheck(err)
 
-	err = os.WriteFile(files.Files[2], []byte(SetMultiSaveJSON), 0777)
+	err = os.WriteFile(files.FilesJSON[2], []byte(SetMultiSaveJSON), 0777)
 
 	ErrorCheck(err)
 }
 
 func SetOnceSave(key string, value string) {
-	SetOnceSave, err := os.ReadFile(files.Files[2])
+	SetOnceSave, err := os.ReadFile(files.FilesJSON[2])
 
 	ErrorCheck(err)
 
 	SetSaveJSON := string(SetOnceSave)
-	SetSaveJSON,err = sjson.Set(SetSaveJSON, key, value)
+	SetSaveJSON, err = sjson.Set(SetSaveJSON, key, value)
 
 	ErrorCheck(err)
 
-	err = os.WriteFile(files.Files[2], []byte(SetSaveJSON), 0777)
+	err = os.WriteFile(files.FilesJSON[2], []byte(SetSaveJSON), 0777)
 
 	ErrorCheck(err)
 }

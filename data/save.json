@@ -13,5 +13,6 @@
     "office":null,
     "gaming":null,
     "utils":null,
-    "mediagrap":null
+    "mediagrap":null,
+    "drivers":["nvidia"]
 }

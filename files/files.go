@@ -1,6 +1,6 @@
 package files 
 
-var Files = [...]string{
+var FilesJSON = [...]string{
 	"data/languages.json", 
 	"data/keyboard.json", 
 	"data/save.json",
@@ -12,4 +12,5 @@ var Files = [...]string{
 	"data/gaming.json",
 	"data/utils.json",
 	"data/media_grap.json",
+	"data/drivers.json",
 }
