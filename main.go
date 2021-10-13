@@ -2,6 +2,7 @@ package main
 
 import (
 	s "FoxxoOS/main_server"
+	"FoxxoOS/util"
 	"fmt"
 	"os/exec"
 
@@ -9,6 +10,8 @@ import (
 )
 
 func main() {
+	//Test()
+
 	cmd := exec.Command(
 		"bash", 
 		"-c", 
@@ -26,4 +29,13 @@ func main() {
 	})
 
 	s.MainServer(app)
+}
+
+func Test() {
+	util.Partitioning(
+		"/dev/sdc", 
+		"mkpart", 
+		[]string{"primary",""}, 
+		[]string{"-1MiB","100%"},
+	)
 }

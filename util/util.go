@@ -2,9 +2,11 @@ package util
 
 import (
 	"FoxxoOS/files"
+	"fmt"
 	"log"
 	"os"
 	"os/exec"
+	"strings"
 
 	"github.com/tidwall/sjson"
 )
@@ -56,3 +58,19 @@ func SetOnceSave(key string, value string) {
 
 	ErrorCheck(err)
 }
+
+func Partitioning(disk string, option string, types []string, start_end []string) {
+	command := fmt.Sprintf(
+		"parted -s %v -- %v %v %v", 
+		disk, 
+		option, 
+		strings.Join(types," "), 
+		strings.Join(start_end," "),
+	)
+
+	cmd := exec.Command("bash", "-c", command)
+	err := cmd.Run()
+
+	ErrorCheck(err)
+}
+
