@@ -9,6 +9,7 @@ import (
 
 
 func MainServer(app *fiber.App) {
+	app.Post("/post/partition", r.Partitions)
 	app.Post("/post/drivers", r.Drivers)
 	app.Post("/post/mediagrap", r.MediaGrap)
 	app.Post("/post/utils", r.Utils)

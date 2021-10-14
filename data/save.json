@@ -14,5 +14,12 @@
     "gaming":null,
     "utils":null,
     "mediagrap":null,
-    "drivers":["nvidia"]
+    "drivers":["nvidia"],
+    "disk": {
+        "type":"auto",
+        "disk":null,
+        "swap":null,
+        "boot":null,
+        "root":null
+    }
 }

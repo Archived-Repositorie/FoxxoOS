@@ -301,3 +301,56 @@ func Drivers(c *fiber.Ctx) error {
 
 	return c.SendString(fmt.Sprintf("%v", list))
 }
+
+type Disk struct {
+	Type string
+	Disk string
+	Root string
+	BootEFI string
+	Swap string
+}
+
+func Partitions(c *fiber.Ctx) error {
+	types := c.Query("type")
+
+	disk := Disk{}
+	disk.Type = types
+
+	switch types {
+	case "auto":
+		disk.Disk = c.Query("disk")
+
+		_, err := os.Stat("/sys/firmware/efi") 
+		if err == nil {
+			disk.BootEFI = fmt.Sprintf("%v%v", disk.Disk, 3)
+		} 
+
+		disk.Swap = fmt.Sprintf("%v%v", disk.Disk, 2)
+
+		disk.Root = fmt.Sprintf("%v%v", disk.Disk, 1)
+	case "manually":
+		disk.Disk = c.Query("disk")
+
+		_, err := os.Stat("/sys/firmware/efi") 
+		if err == nil {
+			disk.BootEFI = c.Query("boot")
+		}
+
+		disk.Swap = c.Query("swap")
+
+		disk.Root = c.Query("root")
+	}
+
+	util.SetOnceSave("disk.type", disk.Type)
+	util.SetOnceSave("disk.disk", disk.Disk)
+	util.SetOnceSave("disk.swap", disk.Swap)
+
+	_, err := os.Stat("/sys/firmware/efi") 
+	if err == nil {
+		util.SetOnceSave("disk.boot", disk.BootEFI)
+	}
+
+	util.SetOnceSave("disk.root", disk.Root)
+
+	return c.SendString(fmt.Sprintf("%v", disk))
+}

@@ -32,10 +32,13 @@ func main() {
 }
 
 func Test() {
-	util.Partitioning(
+	partition := util.Partitioning(
 		"/dev/sdc", 
 		"mkpart", 
-		[]string{"primary",""}, 
-		[]string{"-1MiB","100%"},
+		[]string{"primary"}, 
+		[]string{"-5M","100%"},
+		3,
 	)
+
+	fmt.Println(partition)
 }
