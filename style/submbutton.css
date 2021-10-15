@@ -1,0 +1,41 @@
+.submButton{
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    width: 200px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 18px;
+    font-family: sans-serif;
+    text-decoration: none;
+    color: #333;
+    border: 2px solid #333;
+    letter-spacing: 2px;
+    text-align: center;
+    position: relative;
+    transition: all .35s;
+  }
+  
+  .submButton span{
+    position: relative;
+    z-index: 2;
+  }
+  
+  .submButton:after{
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: var(--nord14);
+    transition: all .35s;
+  }
+  
+  .submButton:hover{
+    color: #fff;
+  }
+  
+  .submButton:hover:after{
+    width: 100%;
+  }

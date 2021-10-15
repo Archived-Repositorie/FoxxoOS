@@ -5,7 +5,7 @@
 
     .main,
     .sidebar {
-    border: 3px solid black;
+    border: 3px solid var(--nord1);
     padding: 15px;
     }
 
@@ -18,7 +18,7 @@
     .sidebar {
     background-color: var(--nord5);
     width: 25%;
-    height: 15vh;
+    height: 20%;
     position: -webkit-sticky;
     position: sticky;
     top: 0;
