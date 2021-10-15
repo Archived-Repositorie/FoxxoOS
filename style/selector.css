@@ -1,9 +1,5 @@
 
         @import "../style/nord/nord.css";
-        h2 {
-            color: #AAAAAA;
-        }
-
         .container ul{
         list-style: none;
         margin: 0;
