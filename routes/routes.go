@@ -6,6 +6,7 @@ import (
 	"os"
 
 	"FoxxoOS/files"
+	install "FoxxoOS/installation"
 	"FoxxoOS/util"
 
 	"github.com/gofiber/fiber/v2"
@@ -303,11 +304,11 @@ func Drivers(c *fiber.Ctx) error {
 }
 
 type Disk struct {
-	Type string
-	Disk string
-	Root string
+	Type    string
+	Disk    string
+	Root    string
 	BootEFI string
-	Swap string
+	Swap    string
 }
 
 func Partitions(c *fiber.Ctx) error {
@@ -320,10 +321,10 @@ func Partitions(c *fiber.Ctx) error {
 	case "auto":
 		disk.Disk = c.Query("disk")
 
-		_, err := os.Stat("/sys/firmware/efi") 
+		_, err := os.Stat("/sys/firmware/efi")
 		if err == nil {
 			disk.BootEFI = fmt.Sprintf("%v%v", disk.Disk, 3)
-		} 
+		}
 
 		disk.Swap = fmt.Sprintf("%v%v", disk.Disk, 2)
 
@@ -331,7 +332,7 @@ func Partitions(c *fiber.Ctx) error {
 	case "manually":
 		disk.Disk = c.Query("disk")
 
-		_, err := os.Stat("/sys/firmware/efi") 
+		_, err := os.Stat("/sys/firmware/efi")
 		if err == nil {
 			disk.BootEFI = c.Query("boot")
 		}
@@ -345,12 +346,14 @@ func Partitions(c *fiber.Ctx) error {
 	util.SetOnceSave("disk.disk", disk.Disk)
 	util.SetOnceSave("disk.swap", disk.Swap)
 
-	_, err := os.Stat("/sys/firmware/efi") 
+	_, err := os.Stat("/sys/firmware/efi")
 	if err == nil {
 		util.SetOnceSave("disk.boot", disk.BootEFI)
 	}
 
 	util.SetOnceSave("disk.root", disk.Root)
+
+	install.Partitioning()
 
 	return c.SendString(fmt.Sprintf("%v", disk))
 }

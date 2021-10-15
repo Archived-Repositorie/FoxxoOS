@@ -17,7 +17,7 @@
     "drivers":["nvidia"],
     "disk": {
         "type":"auto",
-        "disk":null,
+        "disk":"/dev/vda",
         "swap":null,
         "boot":null,
         "root":null
