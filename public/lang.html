@@ -10,29 +10,30 @@
     <link rel="stylesheet" href="../style/main.css">
     <link rel="stylesheet" href="../style/selector.css">
     <link rel="stylesheet" href="../style/stickySidebar.css">
+    <link rel="stylesheet" href="../style/submbutton.css">
 </head>
 <body>
     <form>
     <div class="wrapper">
         <div class="sidebar">
-            <h1 style="color:var(--nord7);">Whats your language?</h1>
+            <h1 style="text-align: center;font-family:Arial, Helvetica, sans-serif;">Select your Language</h1>
+            <button class="submButton" type="submit">
+                <span>Continue</span></a>
+            </button>
           </div>
         <div class="main">  
-                <ul>
-                    <li>
-                      <input type="radio" id="f-option" name="selector">
-                      <label for="f-option" style="color:var(--nord6);">t1</label>
-                      
-                      <div class="check"></div>
-                    </li>
-                    
-                    <li>
-                      <input type="radio" id="s-option" name="selector">
-                      <label for="s-option"style="color:var(--nord6);">t2</label>
-                      
-                      <div class="check"><div class="inside"></div></div>
-                    </li>
-                  </ul>
+            <ul>
+                <li>
+                    <input type="radio" id="f-option" name="selector">
+                    <label for="f-option" style="color:var(--nord6);">t1</label> 
+                    <div class="check"></div>
+                </li>
+                <li>
+                    <input type="radio" id="s-option" name="selector">
+                    <label for="s-option"style="color:var(--nord6);">t2</label>                      
+                    <div class="check"><div class="inside"></div></div>
+                </li>
+            </ul>
         </div>        
       </div>
     </form>
