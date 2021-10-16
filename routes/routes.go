@@ -13,6 +13,33 @@ import (
 	"github.com/tidwall/gjson"
 )
 
+func pkgRoute(c *fiber.Ctx, file int, name string) error {
+	read, err := os.ReadFile(files.FilesJSON[file])
+
+	util.ErrorCheck(err)
+
+	JSON := string(read)
+
+	var lMap map[string]string
+	json.Unmarshal(read, &lMap)
+
+	array := []string{}
+	for key, _ := range lMap {
+		array = append(array, c.Query(key))
+	}
+
+	list := []string{}
+	for i := 0; i < len(array); i++ {
+		if array[i] != "" {
+			list = append(list, gjson.Get(JSON, array[i]).String())
+		}
+	}
+
+	util.SetMultiSave(name, list)
+
+	return c.SendString(fmt.Sprintf("%v", list))
+}
+
 func User(c *fiber.Ctx) error {
 	user := [3]string{
 		c.Query("name"),
@@ -115,192 +142,31 @@ func DE(c *fiber.Ctx) error {
 }
 
 func Web(c *fiber.Ctx) error {
-	read, err := os.ReadFile(files.FilesJSON[5])
-
-	util.ErrorCheck(err)
-
-	JSON := string(read)
-
-	var lMap map[string]string
-	json.Unmarshal(read, &lMap)
-
-	array := []string{}
-	for key, _ := range lMap {
-		array = append(array, c.Query(key))
-	}
-
-	list := []string{}
-	for i := 0; i < len(array); i++ {
-		if array[i] != "" {
-			list = append(list, gjson.Get(JSON, array[i]).String())
-		}
-	}
-
-	util.SetMultiSave("webbrowser", list)
-
-	return c.SendString(fmt.Sprintf("%v", list))
+	return pkgRoute(c, 5, "webbrowser")
 }
 
 func Program(c *fiber.Ctx) error {
-	read, err := os.ReadFile(files.FilesJSON[6])
-
-	util.ErrorCheck(err)
-
-	JSON := string(read)
-
-	var lMap map[string]string
-	json.Unmarshal(read, &lMap)
-
-	array := []string{}
-	for key, _ := range lMap {
-		array = append(array, c.Query(key))
-	}
-
-	list := []string{}
-	for i := 0; i < len(array); i++ {
-		if array[i] != "" {
-			list = append(list, gjson.Get(JSON, array[i]).String())
-		}
-	}
-
-	util.SetMultiSave("programming", list)
-
-	return c.SendString(fmt.Sprintf("%v", list))
+	return pkgRoute(c, 6, "programming")
 }
 
 func Office(c *fiber.Ctx) error {
-	read, err := os.ReadFile(files.FilesJSON[7])
-
-	util.ErrorCheck(err)
-
-	JSON := string(read)
-
-	var lMap map[string]string
-	json.Unmarshal(read, &lMap)
-
-	array := []string{}
-	for key, _ := range lMap {
-		array = append(array, c.Query(key))
-	}
-
-	list := []string{}
-	for i := 0; i < len(array); i++ {
-		if array[i] != "" {
-			list = append(list, gjson.Get(JSON, array[i]).String())
-		}
-	}
-
-	util.SetMultiSave("office", list)
-
-	return c.SendString(fmt.Sprintf("%v", list))
+	return pkgRoute(c, 7, "office")
 }
 
 func Gaming(c *fiber.Ctx) error {
-	read, err := os.ReadFile(files.FilesJSON[8])
-
-	util.ErrorCheck(err)
-
-	JSON := string(read)
-
-	var lMap map[string]string
-	json.Unmarshal(read, &lMap)
-
-	array := []string{}
-	for key, _ := range lMap {
-		array = append(array, c.Query(key))
-	}
-
-	list := []string{}
-	for i := 0; i < len(array); i++ {
-		if array[i] != "" {
-			list = append(list, gjson.Get(JSON, array[i]).String())
-		}
-	}
-
-	util.SetMultiSave("gaming", list)
-
-	return c.SendString(fmt.Sprintf("%v", list))
+	return pkgRoute(c, 8, "gaming")
 }
 
 func Utils(c *fiber.Ctx) error {
-	read, err := os.ReadFile(files.FilesJSON[9])
-
-	util.ErrorCheck(err)
-
-	JSON := string(read)
-
-	var lMap map[string]string
-	json.Unmarshal(read, &lMap)
-
-	array := []string{}
-	for key, _ := range lMap {
-		array = append(array, c.Query(key))
-	}
-
-	list := []string{}
-	for i := 0; i < len(array); i++ {
-		if array[i] != "" {
-			list = append(list, gjson.Get(JSON, array[i]).String())
-		}
-	}
-
-	util.SetMultiSave("utils", list)
-
-	return c.SendString(fmt.Sprintf("%v", list))
+	return pkgRoute(c, 9, "utils")
 }
 
 func MediaGrap(c *fiber.Ctx) error {
-	read, err := os.ReadFile(files.FilesJSON[10])
-
-	util.ErrorCheck(err)
-
-	JSON := string(read)
-
-	var lMap map[string]string
-	json.Unmarshal(read, &lMap)
-
-	array := []string{}
-	for key, _ := range lMap {
-		array = append(array, c.Query(key))
-	}
-
-	list := []string{}
-	for i := 0; i < len(array); i++ {
-		if array[i] != "" {
-			list = append(list, gjson.Get(JSON, array[i]).String())
-		}
-	}
-
-	util.SetMultiSave("mediagrap", list)
-
-	return c.SendString(fmt.Sprintf("%v", list))
+	return pkgRoute(c, 10, "mediagrap")
 }
 
 func Drivers(c *fiber.Ctx) error {
-	read, err := os.ReadFile(files.FilesJSON[11])
-
-	util.ErrorCheck(err)
-
-	JSON := string(read)
-
-	var lMap map[string]string
-	json.Unmarshal(read, &lMap)
-
-	array := []string{}
-	for key, _ := range lMap {
-		array = append(array, c.Query(key))
-	}
-
-	list := []string{}
-	for i := 0; i < len(array); i++ {
-		if array[i] != "" {
-			list = append(list, gjson.Get(JSON, array[i]).String())
-		}
-	}
-
-	util.SetMultiSave("drivers", list)
-
-	return c.SendString(fmt.Sprintf("%v", list))
+	return pkgRoute(c, 11, "drivers")
 }
 
 type Disk struct {
