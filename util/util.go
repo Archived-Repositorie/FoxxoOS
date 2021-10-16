@@ -77,19 +77,20 @@ func Partitioning(disk string, option string, types []string, start_end []string
 	return fmt.Sprintf("%v%v", disk, partition)
 }
 
-func FormatFS(fs string, partition string, option ...string) string {
+func FormatFS(fs string, partition string) string {
 	command := fmt.Sprintf(
-		"mk%v %v %v",
+		"mk%v %v",
 		fs,
-		option,
 		partition,
 	)
 
-	cmd := exec.Command("bash", "-c", "sudo"+command)
+	cmd := exec.Command("bash", "-c", "sudo "+command)
 
 	err := cmd.Run()
 
 	ErrorCheck(err)
 
-	return fmt.Sprintf("%v %v %v", partition, fs, option)
+	fmt.Println(command)
+
+	return fmt.Sprintf("%v %v", partition, fs)
 }

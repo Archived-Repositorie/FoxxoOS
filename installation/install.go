@@ -91,6 +91,6 @@ func Partitioning() {
 
 	_, err = os.Stat("/sys/firmware/efi")
 	if err == nil {
-		util.FormatFS("fs.fat", parts.Boot, "-F 32")
+		util.FormatFS("fs.fat -F 32", parts.Boot)
 	}
 }

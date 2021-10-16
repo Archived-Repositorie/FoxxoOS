@@ -1,6 +1,6 @@
 #!/usr/bin/env bin
 
-nix-env -iA go
+nix-env -iA nixos.go
 
 go build
 
