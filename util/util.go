@@ -84,13 +84,13 @@ func FormatFS(fs string, partition string) string {
 		partition,
 	)
 
+	fmt.Println(command)
+
 	cmd := exec.Command("bash", "-c", "sudo "+command)
 
 	err := cmd.Run()
 
 	ErrorCheck(err)
-
-	fmt.Println(command)
 
 	return fmt.Sprintf("%v %v", partition, fs)
 }
