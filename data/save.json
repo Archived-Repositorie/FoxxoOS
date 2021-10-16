@@ -16,10 +16,10 @@
     "mediagrap":null,
     "drivers":["nvidia"],
     "disk": {
-        "type":"auto",
+        "type":"manual",
         "disk":"/dev/vda",
-        "swap":null,
-        "boot":null,
-        "root":null
+        "root":"/dev/vda1",
+        "swap":"/dev/vda2",
+        "boot":"/dev/vda3"
     }
 }

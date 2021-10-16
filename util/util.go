@@ -59,7 +59,7 @@ func SetOnceSave(key string, value string) {
 	ErrorCheck(err)
 }
 
-func Partitioning(disk string, option string, types []string, start_end []string, partition int) string {
+func Partitioning(disk string, option string, types []string, start_end []string, partition ...int) string {
 	command := fmt.Sprintf(
 		"parted -s %v -- %v %v %v",
 		disk,
@@ -68,11 +68,28 @@ func Partitioning(disk string, option string, types []string, start_end []string
 		strings.Join(start_end, " "),
 	)
 
-	cmd := exec.Command("bash", "-c", command)
+	cmd := exec.Command("bash", "-c", "sudo"+command)
 
 	err := cmd.Run()
 
 	ErrorCheck(err)
 
 	return fmt.Sprintf("%v%v", disk, partition)
+}
+
+func FormatFS(fs string, partition string, option ...string) string {
+	command := fmt.Sprintf(
+		"mk%v %v %v",
+		fs,
+		option,
+		partition,
+	)
+
+	cmd := exec.Command("bash", "-c", "sudo"+command)
+
+	err := cmd.Run()
+
+	ErrorCheck(err)
+
+	return fmt.Sprintf("%v %v %v", partition, fs, option)
 }

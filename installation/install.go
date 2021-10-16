@@ -6,13 +6,13 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
-	"strconv"
 )
 
-type Disk struct {
-	Root int
-	Swap int
-	Boot int
+type Partitions struct {
+	Disk string
+	Root string
+	Swap string
+	Boot string
 }
 
 func Partitioning() {
@@ -25,48 +25,43 @@ func Partitioning() {
 
 	diskInfo := JSON["disk"]
 
-	root, err := strconv.Atoi(diskInfo["root"][len(diskInfo["root"])-1:])
-	util.ErrorCheck(err)
-
-	swap, err := strconv.Atoi(diskInfo["swap"][len(diskInfo["swap"])-1:])
-	util.ErrorCheck(err)
-
-	boot, err := strconv.Atoi(diskInfo["boot"][len(diskInfo["boot"])-1:])
-	util.ErrorCheck(err)
-
-	disk := Disk{
-		Root: root,
-		Swap: swap,
-		Boot: boot,
-	}
+	parts := Partitions{}
 
 	switch diskInfo["type"] {
 	case "auto":
 		_, err := os.Stat("/sys/firmware/efi")
-		fmt.Println(disk)
+		fmt.Println(diskInfo)
 
 		rootStart := "0.0"
 		if err == nil {
 			rootStart = "512M"
 		}
 
+		util.Partitioning(
+			diskInfo["disk"],
+			"mklabel",
+			[]string{"gpt"},
+			[]string{},
+		)
+		parts.Disk = diskInfo["disk"]
+
 		partitionRoot := util.Partitioning(
 			diskInfo["disk"],
 			"mkpart",
 			[]string{"primary"},
 			[]string{rootStart, "-8G"},
-			disk.Root,
+			1,
 		)
-
-		fmt.Println(partitionRoot)
+		parts.Root = partitionRoot
 
 		partitionSwap := util.Partitioning(
 			diskInfo["disk"],
 			"mkpart",
 			[]string{"primary", "linux-swap"},
 			[]string{"-8G", "100%"},
-			disk.Root,
+			2,
 		)
+		parts.Swap = partitionSwap
 
 		if err == nil {
 			partitionBoot := util.Partitioning(
@@ -74,13 +69,28 @@ func Partitioning() {
 				"mkpart",
 				[]string{"ESP", "fat32"},
 				[]string{"-8G", "100%"},
-				disk.Root,
+				3,
 			)
-
-			fmt.Println(partitionBoot)
+			parts.Boot = partitionBoot
 		}
 
-		fmt.Println(partitionSwap)
+	case "manual":
+		_, err := os.Stat("/sys/firmware/efi")
+		if err == nil {
+			parts.Boot = diskInfo["boot"]
+		}
+
+		parts.Root = diskInfo["root"]
+		parts.Swap = diskInfo["swap"]
 	}
 
+	fmt.Println(parts)
+
+	util.FormatFS("fs.btrfs", parts.Root)
+	util.FormatFS("swap", parts.Swap)
+
+	_, err = os.Stat("/sys/firmware/efi")
+	if err == nil {
+		util.FormatFS("fs.fat", parts.Boot, "-F 32")
+	}
 }

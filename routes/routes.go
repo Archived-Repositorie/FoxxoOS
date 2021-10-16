@@ -329,7 +329,7 @@ func Partitions(c *fiber.Ctx) error {
 		disk.Swap = fmt.Sprintf("%v%v", disk.Disk, 2)
 
 		disk.Root = fmt.Sprintf("%v%v", disk.Disk, 1)
-	case "manually":
+	case "manual":
 		disk.Disk = c.Query("disk")
 
 		_, err := os.Stat("/sys/firmware/efi")
