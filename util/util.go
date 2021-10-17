@@ -94,3 +94,38 @@ func FormatFS(fs string, partition string) string {
 
 	return fmt.Sprintf("%v %v", partition, fs)
 }
+
+func Mount(partition string, folder string) string {
+	command := fmt.Sprintf(
+		"mount %v %v",
+		partition,
+		folder,
+	)
+
+	fmt.Println(command)
+
+	cmd := exec.Command("bash", "-c", "sudo "+command)
+
+	err := cmd.Run()
+
+	ErrorCheck(err)
+
+	return fmt.Sprintf("%v %v", partition, folder)
+}
+
+func UMount(folder string) string {
+	command := fmt.Sprintf(
+		"umount %v",
+		folder,
+	)
+
+	fmt.Println(command)
+
+	cmd := exec.Command("bash", "-c", "sudo "+command)
+
+	err := cmd.Run()
+
+	ErrorCheck(err)
+
+	return folder
+}

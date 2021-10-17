@@ -7,7 +7,6 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-
 func MainServer(app *fiber.App) {
 	app.Post("/post/partition", r.Partitions)
 	app.Post("/post/drivers", r.Drivers)

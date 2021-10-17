@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
+	"os/exec"
 )
 
 type Partitions struct {
@@ -72,7 +73,43 @@ func partManual(parts *Partitions, diskInfo map[string]string) {
 	parts.Swap = diskInfo["swap"]
 }
 
-func Partitioning() {
+func Formating(parts Partitions) {
+	util.FormatFS("fs.btrfs", parts.Root)
+	util.FormatFS("swap", parts.Swap)
+
+	_, err := os.Stat("/sys/firmware/efi")
+	if err == nil {
+		util.FormatFS("fs.fat -F 32", parts.Boot)
+	}
+}
+
+func Mounting(parts Partitions) {
+	util.Mount(parts.Root, "/mnt")
+
+	_, err := os.Stat("/sys/firmware/efi")
+	if err == nil {
+		command := fmt.Sprintf("mkdir %v", "/mnt/boot")
+		cmd := exec.Command("sudo " + command)
+		cmd.Run()
+
+		util.Mount(parts.Boot, "/mnt/boot")
+	}
+
+	command := fmt.Sprintf("swapon %v", parts.Swap)
+	cmd := exec.Command("sudo " + command)
+	cmd.Run()
+}
+
+func UMounting() {
+	_, err := os.Stat("/sys/firmware/efi")
+	if err == nil {
+		util.UMount("/mnt/boot")
+	}
+
+	util.UMount("/mnt")
+}
+
+func Partitioning() Partitions {
 	file, err := os.ReadFile(files.FilesJSON[2])
 	util.ErrorCheck(err)
 
@@ -91,11 +128,5 @@ func Partitioning() {
 
 	fmt.Println(parts)
 
-	util.FormatFS("fs.btrfs", parts.Root)
-	util.FormatFS("swap", parts.Swap)
-
-	_, err = os.Stat("/sys/firmware/efi")
-	if err == nil {
-		util.FormatFS("fs.fat -F 32", parts.Boot)
-	}
+	return parts
 }
