@@ -9,6 +9,23 @@ import (
 	"os/exec"
 )
 
+
+func Installation() {
+	fmt.Println("Startng installation...\n\n")
+
+	fmt.Println("Partitioning...")
+	parts := Partitioning()
+	fmt.Println("Done!\n\n")
+
+	fmt.Println("Formatting...")
+	Formating(parts)
+	fmt.Println("Done!\n\n")
+
+	fmt.Println("Mounting...")
+	Mounting(parts)
+	fmt.Println("Done!\n\n")
+}
+
 type Partitions struct {
 	Disk string
 	Root string
