@@ -79,7 +79,7 @@ func Partitioning(disk string, option string, types []string, start_end []string
 
 func FormatFS(fs string, partition string) string {
 	command := fmt.Sprintf(
-		"mk%v %v",
+		"mk%v -f %v",
 		fs,
 		partition,
 	)
