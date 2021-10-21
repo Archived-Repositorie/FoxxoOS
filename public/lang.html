@@ -13,11 +13,10 @@
     <link rel="stylesheet" href="../style/submbutton.css">
     <link rel="icon" href="icon/icon.png">
     <script>
-            window.onload = function() {
-        var HousingListing = document.getElementById("HL");
-        var test = document.createElement("test");
-        HousingListing.appendChild(test);
-            }
+        window.onload = function() {
+        const HL = document.getElementById("HL");
+        HL.insertAdjacentHTML('afterbegin',"<h1>ahh</h1>");
+        }
     </script>    
 </head>
 <body>
