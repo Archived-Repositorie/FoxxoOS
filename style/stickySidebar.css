@@ -12,7 +12,7 @@
     .main {
     background-color: var(--nord5);
     width: 60%;
-    height: 150vh;
+    height: auto;
     }
 
     .sidebar {

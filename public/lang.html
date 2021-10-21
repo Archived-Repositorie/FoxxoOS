@@ -18,7 +18,7 @@
         const HL = document.getElementById("HL");
         console.log(data);
         Object.keys(data).forEach(key => {
-            HL.insertAdjacentHTML('afterbegin',key + data[key]);
+            HL.insertAdjacentHTML('afterbegin','<li><input type="radio" id="f-option" name="language" value="test1"><label for="f-option" style="color:var(--nord3);">t1</label><div class="check"></div></li>');
             console.log(key,data[key]);
         });
         }
