@@ -12,10 +12,15 @@
     <link rel="stylesheet" href="../style/stickySidebar.css">
     <link rel="stylesheet" href="../style/submbutton.css">
     <link rel="icon" href="icon/icon.png">
+    <script src="languages.js"></script>
     <script>
         window.onload = function() {
         const HL = document.getElementById("HL");
-        HL.insertAdjacentHTML('afterbegin',"<h1>ahh</h1>");
+        console.log(data);
+        Object.keys(data).forEach(key => {
+            HL.insertAdjacentHTML('afterbegin',key + data[key]);
+            console.log(key,data[key]);
+        });
         }
     </script>    
 </head>
