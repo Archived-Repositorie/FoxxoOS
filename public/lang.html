@@ -12,6 +12,13 @@
     <link rel="stylesheet" href="../style/stickySidebar.css">
     <link rel="stylesheet" href="../style/submbutton.css">
     <link rel="icon" href="icon/icon.png">
+    <script>
+            window.onload = function() {
+        var HousingListing = document.getElementById("HL");
+        var test = document.createElement("test");
+        HousingListing.appendChild(test);
+            }
+    </script>    
 </head>
 <body>
     <form>
@@ -23,14 +30,14 @@
             </button>
           </div>
         <div class="main">  
-            <ul>
+            <ul id="HL">
                 <li>
-                    <input type="radio" id="f-option" name="selector">
+                    <input type="radio" id="f-option" name="language" value="test1">
                     <label for="f-option" style="color:var(--nord3);">t1</label> 
                     <div class="check"></div>
                 </li>
                 <li>
-                    <input type="radio" id="s-option" name="selector">
+                    <input type="radio" id="s-option" name="o2">
                     <label for="s-option"style="color:var(--nord3);">t2</label>                      
                     <div class="check"><div class="inside"></div></div>
                 </li>
