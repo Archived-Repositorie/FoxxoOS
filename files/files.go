@@ -14,3 +14,7 @@ var FilesJSON = [...]string{
 	"data/media_grap.json",
 	"data/drivers.json",
 }
+
+var FilesNIX = [...]string{
+	"nix/configuration.base.nix",
+}

@@ -3,17 +3,17 @@
     "lang":"en_US.UTF-8",
     "timezone":"Europe/London",
     "user" : {
-        "password":null,
-        "name":null
+        "password":"",
+        "name":""
     },
-    "hostname":null,
+    "hostname":"",
     "desktop":"default",
-    "webbrowser":null,
-    "programming":null,
-    "office":null,
-    "gaming":null,
-    "utils":null,
-    "mediagrap":null,
+    "webbrowser":"",
+    "programming":"",
+    "office":"",
+    "gaming":"",
+    "utils":"",
+    "mediagrap":"",
     "drivers":["nvidia"],
     "disk": {
         "type":"manual",

@@ -130,16 +130,16 @@ func UMount(folder string) string {
 	return folder
 }
 
-func ReplaceFile(file string, key string, value string) {
-	fileRead, err := os.ReadFile(file)
+func ReplaceFile(file []byte, key string, value interface{}) []byte {
+	stringFile := string(file)
 
-	ErrorCheck(err)
+	replaceString := strings.ReplaceAll(stringFile, key, fmt.Sprintf("%v", value))
 
-	stringFile := string(fileRead)
+	return []byte(replaceString)
+}
 
-	replaceString := strings.ReplaceAll(stringFile, key, value)
-
-	err = os.WriteFile(file, []byte(replaceString), 0777)
+func SaveFile(file string, value []byte) {
+	err := os.WriteFile(file, value, 0777)
 
 	ErrorCheck(err)
 }

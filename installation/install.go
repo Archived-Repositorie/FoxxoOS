@@ -149,5 +149,25 @@ func Partitioning() Partitions {
 }
 
 func Config() {
-	
+	fileSave, err := os.ReadFile(files.FilesJSON[2])
+	util.ErrorCheck(err)
+
+	fileNIX, err := os.ReadFile(files.FilesNIX[0])
+	util.ErrorCheck(err)
+
+	var JSON map[string]interface{}
+	err = json.Unmarshal(fileSave, &JSON)
+
+	util.ErrorCheck(err)
+
+	start := util.ReplaceFile(fileNIX, "$keyboard", JSON["keyboard"])
+	start = util.ReplaceFile(start, "$locales", JSON["lang"])
+	start = util.ReplaceFile(start, "$timezone", JSON["timezone"])
+	start = util.ReplaceFile(start, "$hostname", JSON["hostname"])
+
+	fmt.Println(string(start))
+
+	fmt.Println(JSON)
+
+	util.SaveFile("nix/test.nix", start)
 }
