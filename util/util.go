@@ -129,3 +129,17 @@ func UMount(folder string) string {
 
 	return folder
 }
+
+func ReplaceFile(file string, key string, value string) {
+	fileRead, err := os.ReadFile(file)
+
+	ErrorCheck(err)
+
+	stringFile := string(fileRead)
+
+	replaceString := strings.ReplaceAll(stringFile, key, value)
+
+	err = os.WriteFile(file, []byte(replaceString), 0777)
+
+	ErrorCheck(err)
+}

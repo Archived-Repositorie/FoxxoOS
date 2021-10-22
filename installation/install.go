@@ -147,3 +147,7 @@ func Partitioning() Partitions {
 
 	return parts
 }
+
+func Config() {
+	
+}
