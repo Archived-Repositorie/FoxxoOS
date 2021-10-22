@@ -1,8 +1,8 @@
-package files 
+package files
 
 var FilesJSON = [...]string{
-	"data/languages.json", 
-	"data/keyboard.json", 
+	"data/languages.json",
+	"data/keyboard.json",
 	"data/save.json",
 	"data/timezones.json",
 	"data/desktops.json",

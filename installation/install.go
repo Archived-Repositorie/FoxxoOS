@@ -9,7 +9,6 @@ import (
 	"os/exec"
 )
 
-
 func Installation() {
 	fmt.Println("Startng installation...\n\n")
 
@@ -165,9 +164,9 @@ func Config() {
 	start = util.ReplaceFile(start, "$timezone", JSON["timezone"])
 	start = util.ReplaceFile(start, "$hostname", JSON["hostname"])
 
-	fmt.Println(string(start))
-
-	fmt.Println(JSON)
+	if util.StringInSlice("printing", JSON["drivers"]) {
+		start = util.ReplaceFile(start, "$printing", true)
+	}
 
 	util.SaveFile("nix/test.nix", start)
 }
