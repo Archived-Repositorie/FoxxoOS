@@ -3,18 +3,18 @@
     "lang":"en_US.UTF-8",
     "timezone":"Europe/London",
     "user" : {
-        "password":"",
-        "name":""
+        "password":"foxxo",
+        "name":"foxxo"
     },
-    "hostname":"",
+    "hostname":"foxxoos",
     "desktop":"default",
-    "webbrowser":"",
-    "programming":"",
-    "office":"",
-    "gaming":"",
-    "utils":"",
-    "mediagrap":"",
-    "drivers":["nvidia"],
+    "webbrowser":[],
+    "programming":[],
+    "office":[],
+    "gaming":[],
+    "utils":[],
+    "mediagrap":[],
+    "drivers":[],
     "disk": {
         "type":"manual",
         "disk":"/dev/vda",

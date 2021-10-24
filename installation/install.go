@@ -159,14 +159,39 @@ func Config() {
 
 	util.ErrorCheck(err)
 
-	start := util.ReplaceFile(fileNIX, "$keyboard", JSON["keyboard"])
-	start = util.ReplaceFile(start, "$locales", JSON["lang"])
-	start = util.ReplaceFile(start, "$timezone", JSON["timezone"])
-	start = util.ReplaceFile(start, "$hostname", JSON["hostname"])
 
-	if util.StringInSlice("printing", JSON["drivers"]) {
-		start = util.ReplaceFile(start, "$printing", true)
+	util.ReplaceFile(&fileNIX, "$keyboard", JSON["keyboard"])
+	util.ReplaceFile(&fileNIX, "$locales", JSON["lang"])
+	util.ReplaceFile(&fileNIX, "$timezone", JSON["timezone"])
+	util.ReplaceFile(&fileNIX, "$hostname", JSON["hostname"])
+	util.ReplaceFile(&fileNIX, "$printing", util.StringInSlice("printing", JSON["drivers"]))
+	util.ReplaceFile(&fileNIX, "$touchpad", util.StringInSlice("touchpad", JSON["drivers"]))
+	util.ReplaceFile(&fileNIX, "$wifi", util.StringInSlice("wifi", JSON["drivers"]))
+	util.ReplaceFile(&fileNIX, "$user.name", util.GetString(JSON["user"], "name"))
+	util.ReplaceFile(&fileNIX, "$desktop", JSON["desktop"])
+
+	bootEfi := "boot.loader.grub.enable = true;\n  boot.loader.efi.canTouchEfiVariables = true;"
+	bootBIOS := fmt.Sprintf("boot.loader.grub.enable = true;\n  boot.loader.grub.device = \"%v\";", util.GetString(JSON["disk"], "disk"))
+
+	_, err = os.Stat("/sys/firmware/efi")
+	if err == nil {
+		util.ReplaceFile(&fileNIX, "$boot", bootEfi)
+	} else {
+		util.ReplaceFile(&fileNIX, "$boot", bootBIOS)
 	}
 
-	util.SaveFile("nix/test.nix", start)
+	if util.StringInSlice("nvidia", JSON["drivers"]) {
+		util.ReplaceFile(&fileNIX, "$nvidia", "services.xserver.videoDrivers = [ \"nvidia\" ];")
+	} else {
+		util.ReplaceFile(&fileNIX, "$nvidia", "")
+	}
+
+	util.ReplaceFile(&fileNIX, "$pkg.webbrowser", util.Stringing(JSON["webbrowser"], "\n  "))
+	util.ReplaceFile(&fileNIX, "$pkg.programming", util.Stringing(JSON["programming"], "\n  "))
+	util.ReplaceFile(&fileNIX, "$pkg.gaming", util.Stringing(JSON["gaming"], "\n  "))
+	util.ReplaceFile(&fileNIX, "$pkg.utils", util.Stringing(JSON["utils"], "\n  "))
+	util.ReplaceFile(&fileNIX, "$pkg.mediagrap", util.Stringing(JSON["mediagrap"], "\n  "))
+	util.ReplaceFile(&fileNIX, "$pkg.office", util.Stringing(JSON["office"], "\n  "))
+
+	util.SaveFile("nix/test.nix", fileNIX)
 }

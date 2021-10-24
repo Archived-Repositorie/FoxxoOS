@@ -11,11 +11,11 @@
     ];
 
   # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  $boot
+
 
   networking.hostName = "$hostname"; # Define your hostname.
-  networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  networking.wireless.enable = $wifi;  # Enables wireless support via wpa_supplicant.
 
   # Set your time zone.
   time.timeZone = "$timezone";
@@ -28,6 +28,8 @@
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+
+  $nvidia
 
   # Select internationalisation properties.
   i18n.defaultLocale = "$locales";
@@ -68,12 +70,15 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    noto-fonts
+    noto-fonts-cjk
+    noto-fonts-emoji
     $pkg.webbrowser
     $pkg.programming
     $pkg.office
     $pkg.gaming
     $pkg.utils
-    &pkg.mediagrap
+    $pkg.mediagrap
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

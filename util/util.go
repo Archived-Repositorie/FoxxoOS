@@ -29,6 +29,14 @@ func StringInSlice(a string, list interface{}) bool {
 	return false
 }
 
+func GetString(list interface{},key string) string {
+	switch list := list.(type) {
+	case map[string]interface{}:
+		return fmt.Sprintf("%v",list[key])
+	}
+	return "user"
+}
+
 func ErrorCheck(er error) {
 	if er != nil {
 		log.Fatalln(er)
@@ -36,6 +44,17 @@ func ErrorCheck(er error) {
 		cmd := exec.Command("bash", "-c", "killall firefox")
 		cmd.Run()
 	}
+}
+
+func Stringing(array interface{}, replace string) string {
+	var str string
+	switch array := array.(type) {
+	case []interface{}:
+		for _, a := range array {
+			str += fmt.Sprintf("%v%v", a,replace)
+		}
+	}
+	return str
 }
 
 func SetMultiSave(key string, value []string) {
@@ -139,12 +158,12 @@ func UMount(folder string) string {
 	return folder
 }
 
-func ReplaceFile(file []byte, key string, value interface{}) []byte {
-	stringFile := string(file)
+func ReplaceFile(file *[]byte, key string, value interface{}) {
+	stringFile := string(*file)
 
 	replaceString := strings.ReplaceAll(stringFile, key, fmt.Sprintf("%v", value))
 
-	return []byte(replaceString)
+	*file = []byte(replaceString)
 }
 
 func SaveFile(file string, value []byte) {
