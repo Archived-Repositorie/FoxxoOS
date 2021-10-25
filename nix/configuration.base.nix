@@ -54,6 +54,16 @@
   # Enable CUPS to print documents.
   services.printing.enable = $printing;
 
+  $scanner
+  $scanner.hp
+  $scanner.airscan
+  $scanner.epson
+  $scanner.brother
+  $scanner.gimp
+
+  $bluetooth
+  $blueman
+
   # Enable sound.
   sound.enable = true;
   hardware.pulseaudio.enable = true;
@@ -108,5 +118,6 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "21.05"; # Did you read the comment?
 
+  boot.plymouth.enable = true;
 }
 

@@ -10,6 +10,5 @@
     "scanner_epson" : "scanner_epson",
     "scanner_brother" : "scanner_brother",
     "scanner_gimp" : "scanner_gimp",
-    "touchpad" : "touchpad",
-    "wireless" : "wireless"
+    "touchpad" : "touchpad"
 }

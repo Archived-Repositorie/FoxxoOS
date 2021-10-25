@@ -23,6 +23,10 @@ func Installation() {
 	fmt.Println("Mounting...")
 	Mounting(parts)
 	fmt.Println("Done!\n\n")
+
+	fmt.Println("Building nix files...")
+	Config()
+	fmt.Println("Done!\n\n")
 }
 
 type Partitions struct {
@@ -159,7 +163,6 @@ func Config() {
 
 	util.ErrorCheck(err)
 
-
 	util.ReplaceFile(&fileNIX, "$keyboard", JSON["keyboard"])
 	util.ReplaceFile(&fileNIX, "$locales", JSON["lang"])
 	util.ReplaceFile(&fileNIX, "$timezone", JSON["timezone"])
@@ -186,6 +189,61 @@ func Config() {
 		util.ReplaceFile(&fileNIX, "$nvidia", "")
 	}
 
+	if util.StringInSlice("bluetooth", JSON["drivers"]) {
+		util.ReplaceFile(&fileNIX, "$bluetooth", "hardware.bluetooth.enable = true;")
+	} else {
+		util.ReplaceFile(&fileNIX, "$bluetooth", "")
+	}
+
+	if util.StringInSlice("blueman", JSON["drivers"]) {
+		util.ReplaceFile(&fileNIX, "$blueman", "services.blueman.enable = true;")
+	} else {
+		util.ReplaceFile(&fileNIX, "$blueman", "")
+	} 
+
+	if util.StringInSlice("scanner_hp", JSON["drivers"]) {
+		util.ReplaceFile(&fileNIX, "$scanner.hp", "hardware.sane.extraBackends = [ pkgs.hplipWithPlugin ];")
+	} else {
+		util.ReplaceFile(&fileNIX, "$scanner.hp", "")
+	} 
+
+	if util.StringInSlice("scanner_airscan", JSON["drivers"]) {
+		util.ReplaceFile(&fileNIX, "$scanner.airscan", "hardware.sane.extraBackends = [ pkgs.sane-airscan ];")
+	} else {
+		util.ReplaceFile(&fileNIX, "$scanner.airscan", "")
+	}
+
+	if util.StringInSlice("scanner_epson", JSON["drivers"]) {
+		util.ReplaceFile(&fileNIX, "$scanner.epson", "hardware.sane.extraBackends = [ pkgs.epkowa ]; \n hardware.sane.extraBackends = [ pkgs.utsushi ]; \n services.udev.packages = [ pkgs.utsushi ];")
+	} else {
+		util.ReplaceFile(&fileNIX, "$scanner.epson", "")
+	}
+
+	if util.StringInSlice("scanner_brother", JSON["drivers"]) {
+		util.ReplaceFile(&fileNIX, "$scanner.brother", `imports = [ 
+    	<nixpkgs/nixos/modules/services/hardware/sane_extra_backends/brscan4.nix>
+    	./hardware-configuration.nix
+	];
+	hardware.sane.brscan4.enable = true;
+		`)
+	} else {
+		util.ReplaceFile(&fileNIX, "$scanner.brother", "")
+	}
+
+	if util.StringInSlice("scanner_gimp", JSON["drivers"]) {
+		util.ReplaceFile(&fileNIX, "$scanner.gimp", `nixpkgs.config.packageOverrides = pkgs: {
+			xsaneGimp = pkgs.xsane.override { gimpSupport = true; }; 
+		};`)
+	} else {
+		util.ReplaceFile(&fileNIX, "$scanner.gimp", "")
+	}
+
+	if util.StringInSlice("scanner", JSON["drivers"]) {
+		util.ReplaceFile(&fileNIX, "$scanner", "hardware.sane.enable = true;")
+	} else {
+		util.ReplaceFile(&fileNIX, "$scanner", "")
+	}
+
 	util.ReplaceFile(&fileNIX, "$pkg.webbrowser", util.Stringing(JSON["webbrowser"], "\n  "))
 	util.ReplaceFile(&fileNIX, "$pkg.programming", util.Stringing(JSON["programming"], "\n  "))
 	util.ReplaceFile(&fileNIX, "$pkg.gaming", util.Stringing(JSON["gaming"], "\n  "))
@@ -193,5 +251,7 @@ func Config() {
 	util.ReplaceFile(&fileNIX, "$pkg.mediagrap", util.Stringing(JSON["mediagrap"], "\n  "))
 	util.ReplaceFile(&fileNIX, "$pkg.office", util.Stringing(JSON["office"], "\n  "))
 
-	util.SaveFile("nix/test.nix", fileNIX)
+	util.SaveFile("nix/configuration.nix", fileNIX)
+
+	util.SudoExec("cp %v %v", "./nix/configuration.nix", "./nix/test.nix")
 }

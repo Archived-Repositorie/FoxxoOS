@@ -29,10 +29,10 @@ func StringInSlice(a string, list interface{}) bool {
 	return false
 }
 
-func GetString(list interface{},key string) string {
+func GetString(list interface{}, key string) string {
 	switch list := list.(type) {
 	case map[string]interface{}:
-		return fmt.Sprintf("%v",list[key])
+		return fmt.Sprintf("%v", list[key])
 	}
 	return "user"
 }
@@ -51,7 +51,7 @@ func Stringing(array interface{}, replace string) string {
 	switch array := array.(type) {
 	case []interface{}:
 		for _, a := range array {
-			str += fmt.Sprintf("%v%v", a,replace)
+			str += fmt.Sprintf("%v%v", a, replace)
 		}
 	}
 	return str
@@ -112,8 +112,6 @@ func FormatFS(fs string, partition string) string {
 		partition,
 	)
 
-	fmt.Println(command)
-
 	cmd := exec.Command("bash", "-c", "sudo "+command)
 
 	err := cmd.Run()
@@ -130,8 +128,6 @@ func Mount(partition string, folder string) string {
 		folder,
 	)
 
-	fmt.Println(command)
-
 	cmd := exec.Command("bash", "-c", "sudo "+command)
 
 	err := cmd.Run()
@@ -146,8 +142,6 @@ func UMount(folder string) string {
 		"umount %v",
 		folder,
 	)
-
-	fmt.Println(command)
 
 	cmd := exec.Command("bash", "-c", "sudo "+command)
 
@@ -168,6 +162,18 @@ func ReplaceFile(file *[]byte, key string, value interface{}) {
 
 func SaveFile(file string, value []byte) {
 	err := os.WriteFile(file, value, 0777)
+
+	ErrorCheck(err)
+}
+
+func SudoExec(command string, add ...interface{}) {
+	command = fmt.Sprintf(command, add...)
+
+	cmd := exec.Command("bash", "-c", "sudo "+command)
+
+	fmt.Println(command)
+
+	err := cmd.Run()
 
 	ErrorCheck(err)
 }
