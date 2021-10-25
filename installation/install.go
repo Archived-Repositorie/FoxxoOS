@@ -253,5 +253,7 @@ func Config() {
 
 	util.SaveFile("nix/configuration.nix", fileNIX)
 
-	util.SudoExec("cp %v %v", "./nix/configuration.nix", "./nix/test.nix")
+	util.SudoExec("nixos-generate-config --root /mnt")
+
+	util.SudoExec("cp %v %v", "./nix/configuration.nix", "/mnt/etc/nixos/configuration.nix")
 }
