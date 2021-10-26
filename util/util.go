@@ -172,8 +172,6 @@ func SudoExec(command string, add ...interface{}) {
 
 	cmd := exec.Command("bash", "-c", "sudo "+command)
 
-	fmt.Println(command)
-
 	err := cmd.Run()
 
 	ErrorCheck(err)
@@ -185,7 +183,7 @@ func EndTime(start time.Time, name string) {
 	colorCyan := "\033[36m"
 
 	time := time.Since(start)
-	fmt.Printf(colorRed+"%v"+colorReset+" took "+colorCyan+"%v", name, time)
+	fmt.Printf(colorRed+"%v"+colorReset+" took "+colorCyan+"%v"+colorReset+"\n", name, time)
 }
 
 func StartTime(start *time.Time) {
