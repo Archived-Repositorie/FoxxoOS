@@ -7,26 +7,33 @@ import (
 	"fmt"
 	"os"
 	"os/exec"
+	"time"
 )
 
 func Installation() {
+	var time time.Time
+
 	fmt.Println("Startng installation...\n\n")
 
 	fmt.Println("Partitioning...")
+	util.StartTime(&time)
 	parts := Partitioning()
-	fmt.Println("Done!\n\n")
+	util.EndTime(time, "Partitioning")
 
 	fmt.Println("Formatting...")
+	util.StartTime(&time)
 	Formating(parts)
-	fmt.Println("Done!\n\n")
+	util.EndTime(time, "Formatting")
 
 	fmt.Println("Mounting...")
+	util.StartTime(&time)
 	Mounting(parts)
-	fmt.Println("Done!\n\n")
+	util.EndTime(time, "Mounting")
 
 	fmt.Println("Building nix files...")
+	util.StartTime(&time)
 	Config()
-	fmt.Println("Done!\n\n")
+	util.EndTime(time, "Building nix files")
 }
 
 type Partitions struct {

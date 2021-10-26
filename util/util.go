@@ -7,6 +7,7 @@ import (
 	"os"
 	"os/exec"
 	"strings"
+	"time"
 
 	"github.com/tidwall/sjson"
 )
@@ -176,4 +177,13 @@ func SudoExec(command string, add ...interface{}) {
 	err := cmd.Run()
 
 	ErrorCheck(err)
+}
+
+func EndTime(start time.Time, name string) {
+    time := time.Since(start)
+    log.Printf("\\e[0;31m%v\\e[0m took \\e[0;36m%v\\e[0m", name, time)
+}
+
+func StartTime(start *time.Time) {
+	*start = time.Now()
 }
