@@ -34,6 +34,11 @@ func Installation() {
 	util.StartTime(&time)
 	Config()
 	util.EndTime(time, "Building nix files")
+
+	fmt.Println("Installation...")
+	util.StartTime(&time)
+	util.SudoExec("nixos-install --no-root-passwd")
+	util.EndTime(time, "Installation")
 }
 
 type Partitions struct {
@@ -206,13 +211,13 @@ func Config() {
 		util.ReplaceFile(&fileNIX, "$blueman", "services.blueman.enable = true;")
 	} else {
 		util.ReplaceFile(&fileNIX, "$blueman", "")
-	} 
+	}
 
 	if util.StringInSlice("scanner_hp", JSON["drivers"]) {
 		util.ReplaceFile(&fileNIX, "$scanner.hp", "hardware.sane.extraBackends = [ pkgs.hplipWithPlugin ];")
 	} else {
 		util.ReplaceFile(&fileNIX, "$scanner.hp", "")
-	} 
+	}
 
 	if util.StringInSlice("scanner_airscan", JSON["drivers"]) {
 		util.ReplaceFile(&fileNIX, "$scanner.airscan", "hardware.sane.extraBackends = [ pkgs.sane-airscan ];")
