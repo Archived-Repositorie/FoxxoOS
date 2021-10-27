@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	//install.Config()
+	//install.Installation()
 
 	app := fiber.New(fiber.Config{
 		AppName: "Foxxo OS",

@@ -57,12 +57,21 @@ func partAuto(parts *Partitions, diskInfo map[string]string) {
 		rootStart = "512M"
 	}
 
-	util.Partitioning(
-		diskInfo["disk"],
-		"mklabel",
-		[]string{"gpt"},
-		[]string{},
-	)
+	if err == nil {
+		util.Partitioning(
+			diskInfo["disk"],
+			"mklabel",
+			[]string{"gpt"},
+			[]string{},
+		)
+	} else {
+		util.Partitioning(
+			diskInfo["disk"],
+			"mklabel",
+			[]string{"msdos"},
+			[]string{},
+		)
+	}
 	parts.Disk = diskInfo["disk"]
 
 	partitionRoot := util.Partitioning(
