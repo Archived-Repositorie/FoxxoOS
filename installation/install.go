@@ -117,7 +117,7 @@ func Formating(parts Partitions) {
 
 	_, err := os.Stat("/sys/firmware/efi/efivars")
 	if err == nil {
-		util.FormatFS("fs.fat -F 32", parts.Boot)
+		util.FormatFS("fs.fat -F32", parts.Boot)
 	}
 }
 

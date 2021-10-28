@@ -107,8 +107,15 @@ func Partitioning(disk string, option string, types []string, start_end []string
 }
 
 func FormatFS(fs string, partition string) string {
+	f := "-f"
+
+	if fs == "fs.fat -F32" {
+		f = ""
+	}
+
 	command := fmt.Sprintf(
-		"mk%v -f %v",
+		"mk%v %v %v",
+		f,
 		fs,
 		partition,
 	)
