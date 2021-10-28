@@ -94,7 +94,7 @@ func partAuto(parts *Partitions, diskInfo map[string]string) {
 			diskInfo["disk"],
 			"mkpart",
 			[]string{"ESP", "fat32"},
-			[]string{"-8G", "100%"},
+			[]string{"1M", rootStart},
 			3,
 		)
 		parts.Boot = partitionBoot
