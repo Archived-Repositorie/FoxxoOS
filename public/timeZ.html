@@ -1,42 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
-        Foxxo Os installer
-    </title>
-    <link rel="stylesheet" href="../style/main.css">
-    <link rel="stylesheet" href="../style/selector.css">
-    <link rel="stylesheet" href="../style/stickySidebar.css">
-    <link rel="stylesheet" href="../style/submbutton.css">
-    <link rel="icon" href="icon/icon.png">
-    <script src="timezones.js"></script>
-    <script>
-        window.onload = function() {
-        const HL = document.getElementById("HL");
-        console.log(data);
-        data.forEach(element => // Why does this even work ?
-            HL.insertAdjacentHTML('afterbegin','<li><input type="radio" id="'+element+'-option" name="keyboardlay" value="' +element +'"><label for="'+element+'-option" style="color:var(--nord3);">'+element+'</label><div class="check"></div></li>')
-        )
-        }
-    </script>    
-</head>
-<body>
-    <form>
-    <div class="wrapper">
-        <div class="sidebar">
-            <h1 style="text-align: center;font-family:Arial, Helvetica, sans-serif;">Select your Keyboardlayout</h1>
-            <button class="submButton" type="submit">
-                <span>Continue</span></a>
-            </button>
-          </div>
-        <div class="main">  
-            <ul id="HL">
-            </ul>
-        </div>        
-      </div>
-    </form>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>
+            Foxxo Os installer
+        </title>
+        <link rel="stylesheet" href="../style/main.css">
+        <link rel="stylesheet" href="../style/selector.css">
+        <link rel="stylesheet" href="../style/stickySidebar.css">
+        <link rel="stylesheet" href="../style/submbutton.css">
+        <link rel="icon" href="icon/icon.png">
+        <script src="timezones.js"></script>
+        <script>
+            window.onload = function() {
+            const HL = document.getElementById("HL");
+            console.log(data);
+            data.forEach(element => // Why does this even work ?
+                HL.insertAdjacentHTML('afterbegin','<li><input type="radio" id="'+element+'-option" name="keyboardlay" value="' +element +'"><label for="'+element+'-option" style="color:var(--nord3);">'+element+'</label><div class="check"></div></li>')
+            )
+            }
+        </script>    
+    </head>
+    <body>
+        <form>
+        <div class="wrapper">
+            <div class="sidebar">
+                <h1 style="text-align: center;font-family:Arial, Helvetica, sans-serif;">Select your Keyboardlayout</h1>
+                <button class="submButton" type="submit">
+                    <span>Continue</span></a>
+                </button>
+            </div>
+            <div class="main">  
+                <ul id="HL">
+                </ul>
+            </div>        
+        </div>
+        </form>
+    </body>
 </html>
