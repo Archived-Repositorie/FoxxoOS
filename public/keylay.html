@@ -12,6 +12,16 @@
     <link rel="stylesheet" href="../style/stickySidebar.css">
     <link rel="stylesheet" href="../style/submbutton.css">
     <link rel="icon" href="icon/icon.png">
+    <script>
+        window.onload = function() {
+        const HL = document.getElementById("HL");
+        console.log(data);
+        Object.keys(data).forEach(key => {
+            HL.insertAdjacentHTML('afterbegin','<li><input type="radio" id="'+key+'-option" name="language" value="' +data[key] +'"><label for="'+key+'-option" style="color:var(--nord3);">'+key+'</label><div class="check"></div></li>');
+            console.log(key,data[key]);
+        });
+        }
+    </script>
 </head>
 <body>
     <form>
