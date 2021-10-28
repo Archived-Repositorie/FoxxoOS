@@ -52,10 +52,7 @@ func partAuto(parts *Partitions, diskInfo map[string]string) {
 	_, err := os.Stat("/sys/firmware/efi")
 	fmt.Println(diskInfo)
 
-	rootStart := "0.0"
-	if err == nil {
-		rootStart = "512M"
-	}
+	rootStart := "512M"
 
 	if err == nil {
 		util.Partitioning(

@@ -7,7 +7,7 @@
         "name":"foxxo"
     },
     "hostname":"foxxoos",
-    "desktop":"default",
+    "desktop":"xfce",
     "webbrowser":[],
     "programming":[],
     "office":[],
@@ -16,7 +16,7 @@
     "mediagrap":[],
     "drivers":[],
     "disk": {
-        "type":"manual",
+        "type":"auto",
         "disk":"/dev/vda",
         "root":"/dev/vda1",
         "swap":"/dev/vda2",
