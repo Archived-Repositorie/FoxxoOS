@@ -115,8 +115,8 @@ func FormatFS(fs string, partition string) string {
 
 	command := fmt.Sprintf(
 		"mk%v %v %v",
-		f,
 		fs,
+		f,
 		partition,
 	)
 
