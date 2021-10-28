@@ -49,7 +49,7 @@ type Partitions struct {
 }
 
 func partAuto(parts *Partitions, diskInfo map[string]string) {
-	_, err := os.Stat("/sys/firmware/efi")
+	_, err := os.Stat("/sys/firmware/efi/efivars")
 	fmt.Println(diskInfo)
 
 	rootStart := "512M"
@@ -102,7 +102,7 @@ func partAuto(parts *Partitions, diskInfo map[string]string) {
 }
 
 func partManual(parts *Partitions, diskInfo map[string]string) {
-	_, err := os.Stat("/sys/firmware/efi")
+	_, err := os.Stat("/sys/firmware/efi/efivars")
 	if err == nil {
 		parts.Boot = diskInfo["boot"]
 	}
@@ -115,7 +115,7 @@ func Formating(parts Partitions) {
 	util.FormatFS("fs.btrfs", parts.Root)
 	util.FormatFS("swap", parts.Swap)
 
-	_, err := os.Stat("/sys/firmware/efi")
+	_, err := os.Stat("/sys/firmware/efi/efivars")
 	if err == nil {
 		util.FormatFS("fs.fat -F 32", parts.Boot)
 	}
@@ -124,7 +124,7 @@ func Formating(parts Partitions) {
 func Mounting(parts Partitions) {
 	util.Mount(parts.Root, "/mnt")
 
-	_, err := os.Stat("/sys/firmware/efi")
+	_, err := os.Stat("/sys/firmware/efi/efivars")
 	if err == nil {
 		command := fmt.Sprintf("mkdir %v", "/mnt/boot")
 		cmd := exec.Command("sudo " + command)
@@ -139,7 +139,7 @@ func Mounting(parts Partitions) {
 }
 
 func UMounting() {
-	_, err := os.Stat("/sys/firmware/efi")
+	_, err := os.Stat("/sys/firmware/efi/efivars")
 	if err == nil {
 		util.UMount("/mnt/boot")
 	}

@@ -97,6 +97,8 @@ func Partitioning(disk string, option string, types []string, start_end []string
 		strings.Join(start_end, " "),
 	)
 
+	fmt.Println(command)
+
 	cmd := exec.Command("bash", "-c", "sudo "+command)
 
 	err := cmd.Run()
