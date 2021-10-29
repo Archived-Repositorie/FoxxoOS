@@ -39,6 +39,10 @@ func Installation() {
 	util.StartTime(&time)
 	util.SudoExec("nixos-install --no-root-passwd")
 	util.EndTime(time, "Installation")
+
+	fmt.Println("Umounting...")
+	UMounting()
+	util.EndTime(time, "Umounting")
 }
 
 type Partitions struct {
