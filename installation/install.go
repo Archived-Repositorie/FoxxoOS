@@ -75,7 +75,7 @@ func partAuto(parts *Partitions, diskInfo map[string]string) {
 		diskInfo["disk"],
 		"mkpart",
 		[]string{"primary"},
-		[]string{rootStart, "-8G"},
+		[]string{rootStart, "-4G"},
 		1,
 	)
 	parts.Root = partitionRoot
@@ -84,7 +84,7 @@ func partAuto(parts *Partitions, diskInfo map[string]string) {
 		diskInfo["disk"],
 		"mkpart",
 		[]string{"primary", "linux-swap"},
-		[]string{"-8G", "100%"},
+		[]string{"-4G", "100%"},
 		2,
 	)
 	parts.Swap = partitionSwap
