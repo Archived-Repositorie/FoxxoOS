@@ -126,9 +126,7 @@ func Mounting(parts Partitions) {
 
 	_, err := os.Stat("/sys/firmware/efi/efivars")
 	if err == nil {
-		command := fmt.Sprintf("mkdir %v", "/mnt/boot")
-		cmd := exec.Command("sudo " + command)
-		cmd.Run()
+		util.SudoExec("mkdir /mnt/boot")
 
 		util.Mount(parts.Boot, "/mnt/boot")
 	}
