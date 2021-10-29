@@ -189,7 +189,16 @@ func Config() {
 	util.ReplaceFile(&fileNIX, "$user.name", util.GetString(JSON["user"], "name"))
 	util.ReplaceFile(&fileNIX, "$desktop", JSON["desktop"])
 
-	bootEfi := "boot.loader.systemd-boot.enable = true;\n  boot.loader.efi.canTouchEfiVariables = true;"
+	bootEfi := `boot.loader = {
+		efi = {
+		  canTouchEfiVariables = true;
+		  efiSysMountPoint = "/boot/efi";
+		};
+		grub = {
+		   efiSupport = true;
+		};
+	  };
+	  `
 	bootBIOS := fmt.Sprintf("boot.loader.grub.enable = true;\n  boot.loader.grub.version = 2;\n  boot.loader.grub.device = \"%v\";", util.GetString(JSON["disk"], "disk"))
 
 	_, err = os.Stat("/sys/firmware/efi")
