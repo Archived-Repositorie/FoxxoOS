@@ -1,15 +1,16 @@
 package main
 
 import (
-	//install "FoxxoOS/installation"
+	install "FoxxoOS/installation"
 	s "FoxxoOS/main_server"
+	"FoxxoOS/util"
 
 	"github.com/gofiber/fiber/v2"
 )
 
 func main() {
-	//install.Installation()
-
+	install.Restart()
+	util.Clean()
 	app := fiber.New(fiber.Config{
 		AppName: "Foxxo OS",
 	})

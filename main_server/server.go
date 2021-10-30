@@ -25,6 +25,7 @@ func MainServer(app *fiber.App) {
 
 	app.Static("/", "./public")
 	app.Static("/style", "./style")
+	app.Static("/data", "./data")
 
 	err := app.Listen(":8080")
 

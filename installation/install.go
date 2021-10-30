@@ -37,7 +37,12 @@ func Installation() {
 
 	fmt.Println("Installation...")
 	util.StartTime(&time)
-	util.SudoExec("nixos-install --no-root-passwd")
+
+	command := exec.Command("bash", "-c", "sudo nixos-install --no-root-passwd")
+	command.Stdout = os.Stdout
+	err := command.Run()
+
+	util.ErrorCheck(err)
 	util.EndTime(time, "Installation")
 
 	fmt.Println("Configuring...")
@@ -48,6 +53,8 @@ func Installation() {
 	fmt.Println("Umounting...")
 	UMounting()
 	util.EndTime(time, "Umounting")
+
+	Restart()
 }
 
 type Partitions struct {
@@ -171,8 +178,6 @@ func Partitioning() Partitions {
 	case "manual":
 		partManual(&parts, diskInfo)
 	}
-
-	fmt.Println(parts)
 
 	return parts
 }
@@ -304,4 +309,17 @@ func Chroot() {
 
 	util.Chroot("echo -e \"%v\n%v\" | passwd %v", userInfo["password"], userInfo["password"], userInfo["name"])
 	util.Chroot("echo -e \"%v\n%v\" | passwd %v", userInfo["password"], userInfo["password"], "root")
+}
+
+func Restart() {
+	util.Clean()
+	fmt.Println("Restart in 20 seconds! \n Click CTRL+C to stop it")
+
+	for i := 19; i >= -1; i-- {
+		time.Sleep(1 * time.Second)
+		util.Clean()
+		fmt.Printf("Restart in %v seconds! \n Click CTRL+C to stop it", i)
+	}
+
+	util.SudoExec("reboot --no-wall")
 }

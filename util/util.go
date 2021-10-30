@@ -120,8 +120,6 @@ func FormatFS(fs string, partition string) string {
 		partition,
 	)
 
-	fmt.Println(command)
-
 	cmd := exec.Command("bash", "-c", "sudo "+command)
 
 	err := cmd.Run()
@@ -206,6 +204,14 @@ func Chroot(command string, add ...interface{}) {
 	cmd := exec.Command("bash", "-c", command)
 
 	err := cmd.Run()
+
+	ErrorCheck(err)
+}
+
+func Clean() {
+	command := exec.Command("clear")
+	command.Stdout = os.Stdout
+	err := command.Run()
 
 	ErrorCheck(err)
 }
