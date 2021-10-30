@@ -18,16 +18,16 @@
             const HL = document.getElementById("HL");
             console.log(data);
             data.forEach(element => // Why does this even work ?
-                HL.insertAdjacentHTML('afterbegin','<li><input type="radio" id="'+element+'-option" name="keyboardlay" value="' +element +'"><label for="'+element+'-option" style="color:var(--nord3);">'+element+'</label><div class="check"></div></li>')
-            )
+                HL.insertAdjacentHTML('afterbegin','<li><input type="radio" id="'+element+'-option" name="time" value="' +element +'"><label for="'+element+'-option" style="color:var(--nord3);">'+element+'</label><div class="check"></div></li>')
+            )// fix that shitty text formatiing cat
             }
         </script>    
     </head>
     <body>
-        <form>
+        <form action="/post/timezone" method="post">
         <div class="wrapper">
             <div class="sidebar">
-                <h1 style="text-align: center;font-family:Arial, Helvetica, sans-serif;">Select your Keyboardlayout</h1>
+                <h1 style="text-align: center;font-family:Arial, Helvetica, sans-serif;">Select your Timezone</h1>
                 <button class="submButton" type="submit">
                     <span>Continue</span></a>
                 </button>

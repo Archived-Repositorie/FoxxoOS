@@ -16,16 +16,14 @@
         <script>
             window.onload = function() {
             const HL = document.getElementById("HL");
-            console.log(data);
             Object.keys(data).forEach(key => {
-                HL.insertAdjacentHTML('afterbegin','<li><input type="radio" id="'+key+'-option" name="keyboardlay" value="' +data[key] +'"><label for="'+key+'-option" style="color:var(--nord3);">'+key+'</label><div class="check"></div></li>');
-                console.log(key,data[key]);
+                HL.insertAdjacentHTML('afterbegin','<li><input type="radio" id="'+key+'-option" name="keyboard" value="' +data[key] +'"><label for="'+key+'-option" style="color:var(--nord3);">'+key+'</label><div class="check"></div></li>');
             });
             }
         </script>    
     </head>
     <body>
-        <form>
+        <form action="post/keyboard"method="post">
         <div class="wrapper">
             <div class="sidebar">
                 <h1 style="text-align: center;font-family:Arial, Helvetica, sans-serif;">Select your Keyboardlayout</h1>
