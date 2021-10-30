@@ -201,7 +201,7 @@ func StartTime(start *time.Time) {
 
 func Chroot(command string, add ...interface{}) {
 	command = fmt.Sprintf(command, add...)
-	command = fmt.Sprintf("sudo nixos-enter /mnt -c '%v'", command)
+	command = fmt.Sprintf("sudo nixos-enter -c '%v'", command)
 
 	cmd := exec.Command("bash", "-c", command)
 
