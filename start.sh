@@ -1,4 +1,4 @@
-#!/usr/bin/env bin
+#run script using command `bash`
 
 nix-env -iA nixos.go
 
