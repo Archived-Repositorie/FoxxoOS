@@ -198,3 +198,14 @@ func EndTime(start time.Time, name string) {
 func StartTime(start *time.Time) {
 	*start = time.Now()
 }
+
+func Chroot(command string, add ...interface{}) {
+	command = fmt.Sprintf(command, add...)
+	command = fmt.Sprintf("sudo nixos-enter /mnt -c '%v'", command)
+
+	cmd := exec.Command("bash", "-c", command)
+
+	err := cmd.Run()
+
+	ErrorCheck(err)
+}

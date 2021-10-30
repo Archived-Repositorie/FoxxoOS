@@ -40,6 +40,11 @@ func Installation() {
 	util.SudoExec("nixos-install --no-root-passwd")
 	util.EndTime(time, "Installation")
 
+	fmt.Println("Configuring...")
+	util.StartTime(&time)
+	Chroot()
+	util.EndTime(time, "Configuring")
+
 	fmt.Println("Umounting...")
 	UMounting()
 	util.EndTime(time, "Umounting")
@@ -286,4 +291,17 @@ func Config() {
 	util.SudoExec("nixos-generate-config --root /mnt")
 
 	util.SudoExec("cp %v %v", "./nix/configuration.nix", "/mnt/etc/nixos/configuration.nix")
+}
+
+func Chroot() {
+	file, err := os.ReadFile(files.FilesJSON[2])
+	util.ErrorCheck(err)
+
+	var JSON map[string]map[string]string
+	json.Unmarshal(file, &JSON)
+
+	userInfo := JSON["user"]
+
+	util.Chroot("echo \"%v:%v\" | chpasswd", userInfo["password"], userInfo["name"])
+	util.Chroot("echo \"%v:%v\" | chpasswd", userInfo["password"], "root")
 }
