@@ -13,6 +13,7 @@
 
   # Use the systemd-boot EFI boot loader.
   $boot
+  boot.loader.grub.useOSProber = true;
 
 
   networking.hostName = "$hostname"; # Define your hostname.
