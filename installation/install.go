@@ -302,6 +302,6 @@ func Chroot() {
 
 	userInfo := JSON["user"]
 
-	util.Chroot("echo \"%v:%v\" | chpasswd", userInfo["password"], userInfo["name"])
-	util.Chroot("echo \"%v:%v\" | chpasswd", userInfo["password"], "root")
+	util.Chroot("echo \"%v\" | passwd --stdin %v", userInfo["password"], userInfo["name"])
+	util.Chroot("echo \"%v\" | passwd --stdin %v", userInfo["password"], "root")
 }
