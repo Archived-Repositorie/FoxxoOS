@@ -2,16 +2,16 @@ package main
 
 import (
 	"log"
-	"sync"
 	"os"
+	"sync"
 
 	//install "FoxxoOS/installation"
 	s "FoxxoOS/main_server"
 	"FoxxoOS/util"
 
-	"github.com/gofiber/fiber/v2"
 	"github.com/asticode/go-astikit"
 	"github.com/asticode/go-astilectron"
+	"github.com/gofiber/fiber/v2"
 )
 
 func main() {
@@ -30,8 +30,8 @@ func main() {
 
 func electron(wg *sync.WaitGroup) {
 	elecApp, err := astilectron.New(log.New(os.Stderr, "", 0), astilectron.Options{
-		AppName:           "FoxxoOS",
-		BaseDirectoryPath: "foxxoos",
+		AppName:            "FoxxoOS",
+		BaseDirectoryPath:  "foxxoos",
 		AppIconDefaultPath: "public/icon/icon.png",
 	})
 	util.ErrorCheck(err)
@@ -45,11 +45,11 @@ func electron(wg *sync.WaitGroup) {
 
 	var window *astilectron.Window
 	window, err = elecApp.NewWindow("http://127.0.0.1:8080", &astilectron.WindowOptions{
-		Center: astikit.BoolPtr(true),
-		Height: astikit.IntPtr(1200),
-		Width: astikit.IntPtr(1000),
+		Center:         astikit.BoolPtr(true),
+		Height:         astikit.IntPtr(1200),
+		Width:          astikit.IntPtr(1000),
 		Fullscreenable: astikit.BoolPtr(true),
-		Fullscreen: astikit.BoolPtr(false),
+		Fullscreen:     astikit.BoolPtr(false),
 	})
 	util.ErrorCheck(err)
 
