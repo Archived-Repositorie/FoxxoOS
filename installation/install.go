@@ -145,7 +145,7 @@ func Mounting(parts Partitions) {
 		util.SudoExec("mkdir /mnt/boot")
 		util.SudoExec("mkdir /mnt/boot/efi")
 
-		util.Mount(parts.Boot, "/mnt/boot")
+		util.Mount(parts.Boot, "/mnt/boot/efi")
 	}
 
 	command := fmt.Sprintf("swapon %v", parts.Swap)
@@ -211,6 +211,7 @@ func Config() {
 		};
 		grub = {
 		   efiSupport = true;
+		   device = "nodev";
 		};
 	  };
 	  `
