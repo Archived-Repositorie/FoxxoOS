@@ -3,6 +3,8 @@ module FoxxoOS
 go 1.17
 
 require (
+	github.com/asticode/go-astikit v0.21.1
+	github.com/asticode/go-astilectron v0.25.0
 	github.com/gofiber/fiber/v2 v2.19.0
 	github.com/tidwall/gjson v1.9.2
 	github.com/tidwall/sjson v1.2.2
