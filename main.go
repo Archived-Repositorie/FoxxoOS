@@ -1,7 +1,7 @@
 package main
 
 import (
-	install "FoxxoOS/installation"
+	//install "FoxxoOS/installation"
 	s "FoxxoOS/main_server"
 	"FoxxoOS/util"
 
@@ -9,7 +9,7 @@ import (
 )
 
 func main() {
-	install.Restart()
+	//install.Installation()
 	util.Clean()
 	app := fiber.New(fiber.Config{
 		AppName: "Foxxo OS",

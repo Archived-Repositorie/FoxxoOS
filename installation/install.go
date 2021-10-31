@@ -156,7 +156,7 @@ func Mounting(parts Partitions) {
 func UMounting() {
 	_, err := os.Stat("/sys/firmware/efi/efivars")
 	if err == nil {
-		util.UMount("/mnt/boot")
+		util.UMount("/mnt/boot/efi")
 	}
 
 	util.UMount("/mnt")
