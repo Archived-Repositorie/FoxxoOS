@@ -37,6 +37,8 @@ func pkgRoute(c *fiber.Ctx, file int, name string) error {
 
 	util.SetMultiSave(name, list)
 
+	c.Redirect(fmt.Sprintf("/install/%v.html", name))
+
 	return c.SendString(fmt.Sprintf("%v", list))
 }
 
@@ -52,12 +54,15 @@ func User(c *fiber.Ctx) error {
 	util.SetOnceSave("user.name", user[0])
 	util.SetOnceSave("user.password", user[1])
 	util.SetOnceSave("hostname", user[2])
-
+	c.Redirect("/installation/user.html")
 	return c.SendString(userJSON)
+
 }
 
 func Installation(c *fiber.Ctx) error {
 	install.Installation()
+
+	c.Redirect("/installation.html")
 
 	return c.SendString("Installation")
 }
@@ -74,6 +79,8 @@ func Lang(c *fiber.Ctx) error {
 
 	util.SetOnceSave("lang", value.String())
 
+	c.Redirect("/")
+
 	return c.SendString(value.String())
 }
 
@@ -88,6 +95,8 @@ func Keyboard(c *fiber.Ctx) error {
 	value := gjson.Get(keyJSON, key)
 
 	util.SetOnceSave("keyboard", value.String())
+
+	c.Redirect("/")
 
 	return c.SendString(value.String())
 }
@@ -115,6 +124,8 @@ func Timezone(c *fiber.Ctx) error {
 
 	util.SetOnceSave("timezone", time)
 
+	c.Redirect("/")
+
 	return c.SendString(time)
 }
 
@@ -129,6 +140,8 @@ func DE(c *fiber.Ctx) error {
 	value := gjson.Get(DEJSON, DE)
 
 	util.SetOnceSave("desktop", value.String())
+
+	c.Redirect("/install/desktop.html")
 
 	return c.SendString(value.String())
 }
@@ -211,7 +224,7 @@ func Partitions(c *fiber.Ctx) error {
 
 	util.SetOnceSave("disk.root", disk.Root)
 
-	install.Partitioning()
+	c.Redirect("/install/partitions.html")
 
 	return c.SendString(fmt.Sprintf("%v", disk))
 }
