@@ -18,6 +18,7 @@
 
   networking.hostName = "$hostname"; # Define your hostname.
   networking.wireless.enable = $wifi;  # Enables wireless support via wpa_supplicant.
+  networking.networkmanager.enable = true;
 
   # Set your time zone.
   time.timeZone = "$timezone";
