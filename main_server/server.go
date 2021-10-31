@@ -21,7 +21,7 @@ func MainServer(app *fiber.App) {
 	app.Post("/post/timezone", r.Timezone)
 	app.Post("/post/lang", r.Lang)
 	app.Post("/post/keyboard", r.Keyboard)
-	app.Post("/post/save", r.Save)
+	app.Post("/post/install", r.Installation)
 
 	app.Static("/", "./public")
 	app.Static("/style", "./style")

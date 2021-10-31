@@ -56,18 +56,10 @@ func User(c *fiber.Ctx) error {
 	return c.SendString(userJSON)
 }
 
-func Save(c *fiber.Ctx) error {
-	saveRead, err := os.ReadFile(files.FilesJSON[2])
+func Installation(c *fiber.Ctx) error {
+	install.Installation()
 
-	util.ErrorCheck(err)
-
-	saveJSON := string(saveRead)
-
-	if c.Query("done") != "ok" {
-		return c.SendString("not ok")
-	}
-
-	return c.SendString(saveJSON)
+	return c.SendString("Installation")
 }
 
 func Lang(c *fiber.Ctx) error {
