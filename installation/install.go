@@ -39,7 +39,7 @@ func Installation() {
 	util.StartTime(&time)
 
 	command := exec.Command("bash", "-c", "sudo nixos-install --no-root-passwd")
-	command.Stdout = os.Stdout
+	command.Stderr = os.Stderr
 	err := command.Run()
 
 	util.ErrorCheck(err)

@@ -41,9 +41,6 @@ func GetString(list interface{}, key string) string {
 func ErrorCheck(er error) {
 	if er != nil {
 		log.Fatalln(er)
-
-		cmd := exec.Command("bash", "-c", "killall firefox")
-		cmd.Run()
 	}
 }
 
