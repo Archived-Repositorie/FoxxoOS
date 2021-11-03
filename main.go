@@ -22,7 +22,7 @@ func main() {
 	back := flag.Bool("backend", false, "Flag for backend")
 	front := flag.Bool("frontend", false, "Flag for electron")
 
-	fmt.Println(back, front)
+	fmt.Println(*back, *front)
 
 	if *back {
 		server()
