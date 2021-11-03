@@ -2,7 +2,7 @@
 #run script using command `bash`
 
 nix-env -iA nixos.go
-nix-env -iA electron
+nix-env -iA nixos.electron
 
 git pull
 
