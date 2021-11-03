@@ -10,4 +10,4 @@ go build
 
 cp $(which electron) ./foxxoos/vendor/electron-linux-amd64/electron
 
-sudo ./FoxxoOS
+sudo ./FoxxoOS --backend & ./FoxxoOS --frontend
