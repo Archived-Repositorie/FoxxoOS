@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>
+            Foxxo Os installer
+        </title>
+        <link rel="stylesheet" href="../../style/main.css">
+        <link rel="stylesheet" href="../../style/selector.css">
+        <link rel="stylesheet" href="../../style/stickySidebar.css">
+        <link rel="stylesheet" href="../../style/submbutton.css">
+        <link rel="icon" href="../icon/icon.png"> 
+        <style>
+            *,
+            *::after,
+            *::before {
+            margin: 0;
+            padding: 0;
+            box-sizing: inherit;
+            font-size: 62,5%;
+            }
+
+
+            .form__label {
+            font-family: sans-serif;
+            font-size: 1.2rem;
+            margin-left: 2rem;
+            margin-top: 0.7rem;
+            display: block;
+            transition: all 0.3s;
+            transform: translateY(0rem);
+            }
+
+            .form__input {
+            font-family: sans-serif;
+            color: #333;
+            font-size: 1.2rem;
+                margin: 0 auto;
+            padding: 1.5rem 2rem;
+            border-radius: 0.2rem;
+            background-color: rgb(255, 255, 255);
+            border: none;
+            width: 90%;
+            display: block;
+            border-bottom: 0.3rem solid transparent;
+            transition: all 0.3s;
+            }
+
+            .form__input:placeholder-shown + .form__label {
+            opacity: 0;
+            visibility: hidden;
+            -webkit-transform: translateY(-4rem);
+            transform: translateY(-4rem);
+            }
+        </style> 
+    </head>
+    <body>
+        <br>
+        <form action="path"method="GET">
+        <div class="wrapper">
+            <div class="sidebar">
+                <h1 style="text-align: center;font-family:Arial, Helvetica, sans-serif;"></h1>
+                <button class="submButton" type="submit">
+                    <span>Continue</span></a>
+                </button>
+            </div>
+            <div class="main">  
+                <div class="form__group">
+                    <input type="text" class="form__input" id="username" placeholder="Username" required />
+                    <label for="name" class="form__label">Username</label>
+                    <br>
+                    <input type="text" class="form__input" id="hostname" placeholder="Hostname" required />
+                    <label for="name" class="form__label">Hostname</label>
+                    <br>
+                    <input type="text" class="form__input" id="password" placeholder="Password" required/>
+                    <label for="name" class="form__label">Password</label>
+                    <br>
+                    <input type="text" class="form__input" id="passwordRep" placeholder="Password(again)" required/>
+                    <label for="name" class="form__label">Password(again)</label>  
+                </div>
+            </div>        
+        </div>
+        </form>
+    </body>
+</html>
