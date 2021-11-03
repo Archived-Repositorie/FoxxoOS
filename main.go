@@ -1,9 +1,10 @@
 package main
 
 import (
+	"flag"
+	"fmt"
 	"log"
 	"os"
-	"sync"
 
 	//install "FoxxoOS/installation"
 	s "FoxxoOS/main_server"
@@ -17,18 +18,24 @@ import (
 func main() {
 	util.Clean()
 	//install.Installation()
-	wg := &sync.WaitGroup{}
 
-	wg.Add(1)
-	go server(wg)
+	back := flag.Bool("backend", false, "Flag for backend")
+	front := flag.Bool("frontend", false, "Flag for electron")
 
-	wg.Add(1)
-	go electron(wg)
+	fmt.Println(*back, *front)
 
-	wg.Wait()
+	flag.Parse()
+
+	if *back {
+		server()
+	} else if *front {
+		electron()
+	} else {
+		log.Fatal("Use flag in command! \n  -backend Runs as backend \n  -frontend Runs as frontend (electron)")
+	}
 }
 
-func electron(wg *sync.WaitGroup) {
+func electron() {
 	elecApp, err := astilectron.New(log.New(os.Stderr, "", 0), astilectron.Options{
 		AppName:            "FoxxoOS",
 		BaseDirectoryPath:  "foxxoos",
@@ -57,16 +64,12 @@ func electron(wg *sync.WaitGroup) {
 	util.ErrorCheck(err)
 
 	elecApp.Wait()
-
-	wg.Done()
 }
 
-func server(wg *sync.WaitGroup) {
+func server() {
 	app := fiber.New(fiber.Config{
 		AppName: "Foxxo OS",
 	})
 
 	s.MainServer(app)
-
-	wg.Done()
 }
