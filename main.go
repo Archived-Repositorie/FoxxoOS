@@ -31,7 +31,7 @@ func main() {
 	} else if *front {
 		electron()
 	} else {
-		log.Fatal("Use flag in command! \n  -backend Runs as backend \n  -frontend Runs for frontend (electron)")
+		log.Fatal("Use flag in command! \n  -backend Runs as backend \n  -frontend Runs as frontend (electron)")
 	}
 }
 
