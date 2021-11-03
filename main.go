@@ -24,6 +24,8 @@ func main() {
 
 	fmt.Println(*back, *front)
 
+	flag.Parse()
+
 	if *back {
 		server()
 	} else if *front {
