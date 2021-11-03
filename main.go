@@ -1,9 +1,10 @@
 package main
 
 import (
+	"flag"
+	"fmt"
 	"log"
 	"os"
-	"flag"
 
 	//install "FoxxoOS/installation"
 	s "FoxxoOS/main_server"
@@ -18,12 +19,17 @@ func main() {
 	util.Clean()
 	//install.Installation()
 
-	if back := flag.Bool("backend", false, "Flag for backend"); *back {
+	back := flag.Bool("backend", false, "Flag for backend")
+	front := flag.Bool("frontend", false, "Flag for electron")
+
+	fmt.Println(back, front)
+
+	if *back {
 		server()
-	} else if front := flag.Bool("frontend", false, "Flag for electron"); *front {
+	} else if *front {
 		electron()
 	} else {
-		log.Fatal("Use flag in command! \n  --backend Runs as backend \n  --frontend Runs for frontend (electron)")
+		log.Fatal("Use flag in command! \n  -backend Runs as backend \n  -frontend Runs for frontend (electron)")
 	}
 }
 
