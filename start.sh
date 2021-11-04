@@ -8,6 +8,10 @@ git pull
 
 go build
 
+mkdir ./foxxoos
+mkdir ./foxxoos/vendor
+mkdir  ./foxxoos/vendor/electron-linux-amd64
+
 cp $(which electron) ./foxxoos/vendor/electron-linux-amd64/electron
 
 sudo ./FoxxoOS -backend & ./FoxxoOS -frontend
