@@ -12,6 +12,7 @@
         <link rel="stylesheet" href="../../style/stickySidebar.css">
         <link rel="stylesheet" href="../../style/submbutton.css">
         <link rel="icon" href="../icon/icon.png"> 
+        <script src="/desktops.js"></script>
         <style>
             *,
             *::after,
@@ -55,7 +56,15 @@
             -webkit-transform: translateY(-4rem);
             transform: translateY(-4rem);
             }
-        </style> 
+        </style>
+        <script>
+            window.onload = function() {
+            const HL = document.getElementById("HL");
+            data.forEach(element => // Why does this even work ?
+                HL.insertAdjacentHTML('afterbegin','<li><input type="radio" id="'+element+'-option" name="time" value="' +element +'"><label for="'+element+'-option" style="color:var(--nord3);">'+element+'</label><div class="check"></div></li>')
+            )// fix that shitty text formatiing cat
+            }
+        </script>   
     </head>
     <body>
         <br>
@@ -70,12 +79,6 @@
             </div>
             <div class="main">  
                 <ul id="HL">
-                    <li>
-                        <input type="radio" id="'+key+'-option" name="desktop1" value="' +data[key] +'">
-                            <label for="'+key+'-option" style="color:var(--nord3);">'+key+'</label>
-                            <div class="check"> 
-                        </div>
-                    </li>
                 </ul>
             </div>        
         </div>

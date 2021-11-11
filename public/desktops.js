@@ -1,4 +1,4 @@
-{
+data = {
     "xfce" : "xfce",
     "kde" : "plasma5",
     "gnome" : "gnome",
