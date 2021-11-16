@@ -60,9 +60,9 @@
         <script>
             window.onload = function() {
             const HL = document.getElementById("HL");
-            data.forEach(element => // Why does this even work ?
-                HL.insertAdjacentHTML('afterbegin','<li><input type="radio" id="'+element+'-option" name="time" value="' +element +'"><label for="'+element+'-option" style="color:var(--nord3);">'+element+'</label><div class="check"></div></li>')
-            )// fix that shitty text formatiing cat
+            Object.keys(data).forEach(key => {
+                HL.insertAdjacentHTML('afterbegin','<li><input type="radio" id="'+key+'-option" name="lang" value="' +data[key] +'"><label for="'+key+'-option" style="color:var(--nord3);">'+key+'</label><div class="check"></div></li>');
+            });
             }
         </script>   
     </head>
