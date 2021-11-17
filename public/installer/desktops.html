@@ -61,7 +61,7 @@
             window.onload = function() {
             const HL = document.getElementById("HL");
             Object.keys(data).forEach(key => {
-                HL.insertAdjacentHTML('afterbegin','<li><input type="radio" id="'+key+'-option" name="lang" value="' +data[key] +'"><label for="'+key+'-option" style="color:var(--nord3);">'+key+'</label><div class="check"></div></li>');
+                HL.insertAdjacentHTML('afterbegin','<li><input type="radio" id="'+key+'-option" name="lang" value="' +key +'"><label for="'+key+'-option" style="color:var(--nord3);">'+key+'</label><div class="check"></div></li>');
             });
             }
         </script>   
